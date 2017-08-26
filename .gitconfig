@@ -1,0 +1,11 @@
+[core]
+    editor = vim
+[user]
+    name = Lucas Flowers
+    email = 31171608+lucas-flowers@users.noreply.github.com
+[alias]
+    l = log --oneline --all --decorate --graph
+    d = diff --word-diff
+[grep]
+    perlRegexp = true
+    perl-regexp = true

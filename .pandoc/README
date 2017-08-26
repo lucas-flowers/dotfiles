@@ -1,0 +1,8 @@
+% On `reference.docx`
+%
+% 2016-06-20
+
+To use a template, create a symbolic link in this folder that links to one of
+the reference Word documents in the `reference-templates-available` folder. The
+name of the symbolic link should be `reference.docx`.
+
