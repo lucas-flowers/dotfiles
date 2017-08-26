@@ -1,1 +1,9 @@
-/home/lucas/Dropbox/dotfiles/.inputrc
+
+# vi editing mode
+set editing-mode vi
+set keymap vi-command
+
+# vi mode indicator (disabled since it makes programs other than bash, like
+# iPython, look ugly)
+#set show-mode-in-prompt on
+
