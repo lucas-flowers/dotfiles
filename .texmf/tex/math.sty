@@ -1,0 +1,143 @@
+% Format
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\topmargin -1.5cm
+\oddsidemargin -0.04cm
+\evensidemargin -0.04cm
+\textwidth 16.59cm
+\textheight 21.94cm 
+\pagestyle{empty}
+\parskip 7.2pt
+\parindent 0pt
+
+% Boxing
+\usepackage{framed}
+
+% Python Listing
+\usepackage{color}
+\usepackage{listings}
+\definecolor{dgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\lstset{
+    basicstyle   = \ttfamily,
+    commentstyle = \color{dgreen},
+    keywordstyle = \color{blue},
+    language     = python,
+    morekeywords = as,
+    stringstyle  = \color{gray}
+}
+
+% Easy Enumeration/Itemization
+\usepackage[ampersand]{easylist}
+
+% Math Packages
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{xfrac}
+
+% Table of Contents Link
+\usepackage[hidelinks]{hyperref}
+
+% Verbatim file input
+\usepackage{verbatim}
+
+%%%%%%%%%%%%%%%%% Macros %%%%%%%%%%%%%%%%%
+
+% Calculus
+\newcommand{\crossp}{\times}                                          % Cross product
+\newcommand{\dotp}{\cdot}                                             % Dot product
+\newcommand{\curl}[1]{\nabla \times #1}                               % Curl
+%\newcommand{\differ}{\text{d}}                                        % Differential
+\newcommand{\divergence}[1]{\nabla \cdot #1}                          % Divergence
+\newcommand{\gradient}[1]{\nabla #1}                                  % Gradient
+\newcommand{\deriv}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}             % First derivative
+\newcommand{\nderiv}[3]{\frac{\mathrm{d}^{#3}#1}{\mathrm{d}#2^{#3}}}  % The nth derivative
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}                % Partial derivative
+\newcommand{\pnderiv}[3]{\frac{\partial^{#3}#1}{\partial#2^{#3}}}     % The nth partial derivative
+\newcommand{\intdef}[4]{\int_{#3}^{#4} #1 \mathrm{\ d}#2}             % Definite integral
+\newcommand{\intind}[2]{\int #1 \mathrm{\ d}#2}                       % Indefinite integral
+\newcommand{\sigsum}[3]{\sum_{#2}^{#3} {#1}}                          % Sum 1
+\newcommand{\piprod}[3]{\prod_{#2}^{#3} {#1}}                         % Product 1
+\newcommand{\ssum}[4]{\sum_{{#2}={#3}}^{#4}{#1}}                      % Sum 2
+\newcommand{\pprod}[4]{\prod_{{#2}={#3}}^{#4}{#1}}                    % Product 2
+
+% Functions
+\newcommand{\comp}{\circ}                                             % Function composition
+\newcommand{\f}[2]{\operatorname{#1}\left({#2}\right)}                % Non-italic functions (such as ln, sin, dim, span, etc.)
+\newcommand{\logb}[2]{\text{log}_{#1}\left(#2\right)}                 % Log with base
+\newcommand{\map}[3]{#1 : #2 \to #3}                                  % Function mapping notation
+
+% Homework
+\newcommand{\problem}[1]{\paragraph{#1}}                              % Basic homework problem numbering
+\newcommand{\hw}[1]{\section*{HW#1}}                                  % Homework title [DEPRECATED]
+\newcommand{\papername}{\section*{\jobname}}                          % File name
+\newcommand{\name}{\subsection*{Lucas Flowers}}                       % Homework name
+
+% Lists
+\newcommand{\opsfin}[3]{#1_0 #2 #1_1 #2 \cdots #2 #1_{#3}}            % Finite list of operations: {template}{operation}{repetitions}
+\newcommand{\opsinf}[2]{#1_0 #2 #1_1 #2 #1_2 #2 \cdots}               % Infinite list of operations: {template}{operation}
+\newcommand{\opsfinn}[3]{#1_1 #2 #1_2 #2 \cdots #2 #1_{#3}}           % Finite list of operations: {template}{operation}{repetitions}
+\newcommand{\opsinfn}[2]{#1_1 #2 #1_2 #2 #1_3 #2 \cdots}              % Infinite list of operations: {template}{operation}
+\newcommand{\listfin}[2]{#1_0, #1_1, \ldots, #1_{#2}}                 % Finite lists
+\newcommand{\listinf}[1]{#1_0, #1_1, #1_2, \ldots}                    % Infinite lists
+\newcommand{\listfinn}[2]{#1_1, #1_2, \ldots, #1_{#2}}                % Finite lists starting from 1
+\newcommand{\listinfn}[1]{#1_1, #1_2, #1_3, \ldots}                   % Infinite lists starting from 1
+
+% Logic
+\newcommand{\AND}{\wedge}                                             % AND symbol
+\newcommand{\implied}{\Longleftarrow}                                 % "A is implied by B"
+\newcommand{\IFF}{\iff}                                               % Logical equivalence
+\newcommand{\IMPLIES}{\implies}                                       % Logical IMPLIES
+\newcommand{\NOT}{\neg}                                               % Logical negation symbol
+\newcommand{\OR}{\vee}                                                % OR symbol
+\newcommand{\xor}{\oplus}                                             % Exclusive OR symbol
+\newcommand{\XOR}{\oplus}                                             % Exclusive OR symbol
+
+% Notation
+\newcommand{\0}{\mathbf{0}}                                           % Zero vector
+\newcommand{\conj}[1]{\overline{#1}}                                  % Conjugate
+\newcommand{\curly}[1]{\{#1\}}                                        % Curly brackets without the fuss
+\newcommand{\dg}{^{\circ}}                                            % Degree sign
+\newcommand{\E}[2]{#1 \times 10^{#2}}                                 % Scientific notation
+\newcommand{\eval}[2]{\left.#1\right|_{#2}}                           % ``Evaluated at'' pipe
+\newcommand{\evald}[3]{\left.#1\right|_{#2}^{#3}}                     % ``Evaluated at'' with upper and lower bounds
+\newcommand{\idx}[3]{{#1}_{{#2}{#3}}}                                 % An element of a matrix using two subscripts
+\newcommand{\inv}{^{-1}}                                              % Inverse (``-1'' as a superscript)
+\newcommand{\norm}[1]{\left\|{#1}\right\|}                            % Self-adjusting vector norm brackets
+\newcommand{\nth}{^{\text{th}}}                                       % Superscript 'th'
+\newcommand{\paren}[1]{\left(#1\right)}                               % Self-adjusting parentheses
+\newcommand{\bracket}[1]{\left[#1\right]}                             % Self-adjusting brackets
+\newcommand{\abs}[1]{\left|#1\right|}                                 % Self-adjusting absolute value
+\newcommand{\angleb}[1]{\left\langle {#1} \right\rangle}              % Angle brackets without the fuss
+\newcommand{\innerp}[1]{\left\langle {#1} \right\rangle}              % Inner product
+\newcommand{\ceiling}[1]{\left\lceil {#1} \right\rceil}               % Ceiling function
+\newcommand{\floor}[1]{\left\lfloor {#1} \right\rfloor}               % Floor function
+
+% Sets
+\newcommand{\builder}[2]{\left\{#1\ \vert\ #2\right\}}                % Set builder notation
+\newcommand{\intersect}{\cap}                                         % Set intersection
+\newcommand{\set}[1]{\{#1\}}                                          % Set in list notation (exactly like \curly)
+\newcommand{\union}{\cup}                                             % Set union
+
+% Special Sets
+\newcommand{\complex}{\mathbb{C}}                                     % Complex numbers
+\newcommand{\integers}{\mathbb{Z}}                                    % Integers
+\newcommand{\naturals}{\mathbb{N}}                                    % Natural numbers
+\newcommand{\rationals}{\mathbb{Q}}                                   % Rational numbers
+\newcommand{\reals}{\mathbb{R}}                                       % Real numbers
+
+% Theorems
+\newtheorem*{axiom}{Axiom}
+\newtheorem*{conjecture}{Conjecture}
+\newtheorem*{corollary}{Corollary}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{postulate}{Postulate}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{definition}{Definition}
+
+% Vector Spaces
+\newcommand{\dsum}{\oplus}                                            % Direct sum
+

@@ -1,0 +1,212 @@
+% Format
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\topmargin -1.5cm
+\oddsidemargin -0.04cm
+\evensidemargin -0.04cm
+\textwidth 16.59cm
+\textheight 21.94cm
+\pagestyle{plain}
+\parskip 7.2pt
+\parindent 0pt
+
+% Font
+\usepackage{lmodern}         % Latin Modern roman, sans-serif, typewriter
+\usepackage[T1]{fontenc}     % Text
+\usepackage{textcomp}        % TS-1 encoding symbols
+% % Oldstyle numerals outside math mode
+% \usepackage [
+    % tt={lining,monowidth},   % Typewriter: No oldstyle numerals, and monowidth
+    % sf={lining}              % Serif: No oldstyle numerals
+% ]
+% {cfr-lm}
+% TO UPDATE MIKTEX FOR THE cfr-lm PACKAGE:
+% In the command prompt, run "initexmf --edit-config-file updmap"; this opens "updmap.cfg" (usually in notepad);
+% Add the line "Map clm.map" at the end of "updmap.cfg" (and save the file);
+% In the command prompt, run "updmap".
+
+% Boxing
+\usepackage{framed}
+
+% Python Listing
+\usepackage{color}
+\usepackage{listings}
+\definecolor{dgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\lstset{
+    basicstyle   = \ttfamily,
+    commentstyle = \color{dgreen},
+    keywordstyle = \color{blue},
+    language     = python,
+    morekeywords = as,
+    stringstyle  = \color{gray}
+}
+
+% Easy Enumeration/Itemization
+\usepackage[ampersand]{easylist}
+
+% Math Packages
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{xfrac}
+
+% Table of Contents Link
+\usepackage[hidelinks]{hyperref}
+
+% Verbatim file input
+\usepackage{verbatim}
+
+% Pretty tables
+\usepackage{booktabs}
+
+% Strikethrough
+\usepackage{soul}
+
+% Negating operators with a slash at the center
+\usepackage{centernot}
+
+% Smart space after macros
+\usepackage{xspace}
+
+% Dirac notation
+\usepackage{braket}
+
+% Pseudocode
+\usepackage[noend]{algpseudocode}
+
+%%%%%%%%%%%%%%%%% Macros %%%%%%%%%%%%%%%%%
+
+% Calculus
+\newcommand{\Curl}[1]{\nabla \times #1}                               % Curl
+\newcommand{\Div}[1]{\nabla \cdot #1}                                 % Divergence
+\newcommand{\Grad}[1]{\nabla #1}                                      % Gradient
+\newcommand{\Deriv}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}             % First derivative
+\newcommand{\nDeriv}[3]{\frac{\mathrm{d}^{#3}#1}{\mathrm{d}#2^{#3}}}  % The nth derivative
+\newcommand{\pDeriv}[2]{\frac{\partial#1}{\partial#2}}                % Partial derivative
+\newcommand{\npDeriv}[3]{\frac{\partial^{#3}#1}{\partial#2^{#3}}}     % The nth partial derivative
+\newcommand{\IntA}[2]{\int {#1} \mathrm{\ d}{#2}}                     % Definite integral
+\newcommand{\IntB}[3]{\int_{#3} {#1} \mathrm{\ d}{#2}}                % Integral with path label
+\newcommand{\IntC}[4]{\int_{#3}^{#4} {#1} \mathrm{\ d}{#2}}           % Indefinite integral
+\newcommand{\oIntA}[2]{\oint {#1} \mathrm{\ d}{#2}}                   % Definite loop integral
+\newcommand{\oIntB}[3]{\oint_{#3} {#1} \mathrm{\ d}{#2}}              % Loop integral with path label
+\newcommand{\oIntC}[4]{\oint_{#3}^{#4} {#1} \mathrm{\ d}{#2}}         % Indefinite loop integral
+\newcommand{\SumA}[2]{\sum_{#2}{#1}}                                  % Sums
+\newcommand{\SumB}[3]{\sum_{#2}^{#3} {#1}}                            %
+\newcommand{\SumC}[4]{\sum_{{#2}={#3}}^{#4}{#1}}                      %
+\newcommand{\ProdA}[2]{\prod_{#2}{#1}}                                % Products
+\newcommand{\ProdB}[3]{\prod_{#2}^{#3} {#1}}                          %
+\newcommand{\ProdC}[4]{\prod_{{#2}={#3}}^{#4}{#1}}                    %
+\newcommand{\LimA}[2]{\lim_{#2} {#1}}                                 % Limits
+\newcommand{\LimB}[3]{\lim_{{#2} \to {#3}} {#1}}                      %
+
+% Functions
+\newcommand{\comp}{\circ}                                             % Function composition
+\newcommand{\f}[2]{\operatorname{#1}\left({#2}\right)}                % Non-italic functions (such as ln, sin, dim, span, etc.)
+\newcommand{\logb}[2]{\text{log}_{#1}\left(#2\right)}                 % Log with base
+\newcommand{\map}[3]{#1 : #2 \to #3}                                  % Function mapping notation
+\DeclareMathOperator{\LCM}{LCM}                                       % Least common multiple
+
+% Group Theory
+\newcommand{\subgroupeq}{\leq}                                        % Subgroup
+\newcommand{\supgroupeq}{\geq}                                        % Supergroup
+\newcommand{\subgroup}{<}                                             % Proper subgroup
+\newcommand{\supgroup}{>}                                             % Proper supergroup
+\newcommand{\nsubgroupeq}{\unlhd}                                     % Normal subgroup
+\newcommand{\nsupgroupeq}{\unrhd}                                     % Contains as a normal subgroup
+\newcommand{\nsubgroup}{\lhd}                                         % Normal proper subgroup
+\newcommand{\nsupgroup}{\rhd}                                         % Contains as a normal proper subgroup
+\newcommand{\cyclic}[1]{\left\langle {#1} \right\rangle}              % Generator notation for cyclic groups
+\newcommand{\gindex}[2]{\paren{{#1} : {#2}}}                          % Index of a subgroup of a group
+\DeclareMathOperator{\ord}{ord}                                       % Order of a group element
+\DeclareMathOperator{\aut}{aut}                                       % Automorphisms of a group
+
+% Lists
+\newcommand{\zfin}[1]{0, 1, \dots, {#1}}                              % Finite list of integers starting from zero: {repetitions}
+\newcommand{\zfinn}[1]{1, 2, \dots, {#1}}                             % Finite list of integers starting from one: {repetitions}
+\newcommand{\zinf}{0, 1, 2, \dots}                                    % Infinite list of integers starting from zero
+\newcommand{\zinfn}{1, 2, 3, \dots}                                   % Infinite list of integers starting from one
+\newcommand{\opsfin}[3]{#1_0 #2 #1_1 #2 \cdots #2 #1_{#3}}            % Finite list of operations: {template}{operation}{repetitions}
+\newcommand{\opsinf}[2]{#1_0 #2 #1_1 #2 #1_2 #2 \cdots}               % Infinite list of operations: {template}{operation}
+\newcommand{\opsfinn}[3]{#1_1 #2 #1_2 #2 \cdots #2 #1_{#3}}           % Finite list of operations: {template}{operation}{repetitions}
+\newcommand{\opsinfn}[2]{#1_1 #2 #1_2 #2 #1_3 #2 \cdots}              % Infinite list of operations: {template}{operation}
+\newcommand{\listfin}[2]{#1_0, #1_1, \ldots, #1_{#2}}                 % Finite lists
+\newcommand{\listinf}[1]{#1_0, #1_1, #1_2, \ldots}                    % Infinite lists
+\newcommand{\listfinn}[2]{#1_1, #1_2, \ldots, #1_{#2}}                % Finite lists starting from 1
+\newcommand{\listinfn}[1]{#1_1, #1_2, #1_3, \ldots}                   % Infinite lists starting from 1
+
+% Logic
+\newcommand{\AND}{\wedge}                                             % Logical AND
+\newcommand{\EQUIV}{\equiv}                                           % Logical equivalence
+\newcommand{\IFF}{\iff}                                               % Logical biconditional
+\newcommand{\IMPLIED}{\Longleftarrow}                                 % "A is implied by B"; spacing might not be correct
+\newcommand{\IMPLIES}{\implies}                                       % Logical implication
+\newcommand{\NOT}{\neg}                                               % Logical negation
+\newcommand{\OR}{\vee}                                                % Logical OR
+\newcommand{\XOR}{\oplus}                                             % Logical exclusive OR
+
+% Notation
+\newcommand{\Avg}[1]{\Braket{#1}}                                     % Expectation value
+\newcommand{\avg}[1]{\braket{#1}}                                     % Expectation value
+\newcommand{\conj}[1]{\overline{#1}}                                  % Conjugate
+\newcommand{\Deg}{^{\circ}}                                           % Degree sign
+\newcommand{\E}[2]{{#1} \times 10^{#2}}                               % Scientific notation
+\newcommand{\EvalA}[2]{\left.#1\right|_{#2}}                          % ``Evaluated at'' pipe
+\newcommand{\EvalB}[3]{\left.#1\right|_{#2}^{#3}}                     % ``Evaluated at'' with upper and lower bounds
+\newcommand{\Forall}{\text{ for all }}                                % `` for all '' written out instead of symbolized
+\newcommand{\idx}[3]{{#1}_{{#2}{#3}}}                                 % An element of a matrix using two subscripts
+\newcommand{\IF}{\text{if }}                                          % ``if '' written out instead of symbolized; used for cases
+\newcommand{\inv}{^{-1}}                                              % Inverse (``-1'' as a superscript)
+\newcommand{\nth}{^{\text{th}}}                                       % Superscript 'th'
+\newcommand{\onum}[1]{\oldstylenums{#1}}                              % Shorter version of \oldstylenums
+
+% Number Theory
+\newcommand{\leg}[2]{\paren{\frac{{#1}}{{#2}}}}                       % Legendre symbol
+
+% Brackets
+\newcommand{\abs}[1]{\left|#1\right|}                                 % Self-adjusting absolute value
+\newcommand{\angleb}[1]{\left\langle {#1} \right\rangle}              % Angle brackets without the fuss
+\newcommand{\bracket}[1]{\left[#1\right]}                             % Self-adjusting brackets
+\newcommand{\ceiling}[1]{\left\lceil {#1} \right\rceil}               % Ceiling function
+\newcommand{\curly}[1]{\{#1\}}                                        % Curly brackets without the fuss
+\newcommand{\floor}[1]{\left\lfloor {#1} \right\rfloor}               % Floor function
+\newcommand{\norm}[1]{\left\|{#1}\right\|}                            % Self-adjusting vector norm brackets
+\newcommand{\paren}[1]{\left(#1\right)}                               % Self-adjusting parentheses
+
+% Sets
+\newcommand{\builder}[2]{\left\{#1\ \vert\ #2\right\}}                % Set builder notation
+\newcommand{\intersect}{\cap}                                         % Set intersection
+\newcommand{\IntersectA}[2]{\bigcap_{#2}{#1}}                         % Intersections
+\newcommand{\IntersectB}[3]{\bigcap_{#2}^{#3} {#1}}                   %
+\newcommand{\IntersectC}[4]{\bigcap_{{#2}={#3}}^{#4}{#1}}             %
+\renewcommand{\set}[1]{\{#1\}}                                        % Set in list notation (exactly like \curly)
+\newcommand{\union}{\cup}                                             % Set union
+\newcommand{\UnionA}[2]{\bigcup_{#2}{#1}}                             % Unions
+\newcommand{\UnionB}[3]{\bigcup_{#2}^{#3} {#1}}                       %
+\newcommand{\UnionC}[4]{\bigcup_{{#2}={#3}}^{#4}{#1}}                 %
+
+% Special Sets
+\newcommand{\complex}{\mathbb{C}}                                     % Complex numbers
+\newcommand{\integers}{\mathbb{Z}}                                    % Integers
+\newcommand{\naturals}{\mathbb{N}}                                    % Natural numbers
+\newcommand{\rationals}{\mathbb{Q}}                                   % Rational numbers
+\newcommand{\reals}{\mathbb{R}}                                       % Real numbers
+
+% Theorems
+\newtheorem*{axiom}{Axiom}
+\newtheorem*{conjecture}{Conjecture}
+\newtheorem*{corollary}{Corollary}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{postulate}{Postulate}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{definition}{Definition}
+
+% Vector Spaces
+\newcommand{\0}{\mathbf{0}}                                           % Zero vector
+\newcommand{\crossp}{\times}                                          % Cross product
+\newcommand{\dotp}{\cdot}                                             % Dot product
+\newcommand{\dsum}{\oplus}                                            % Direct sum
+\newcommand{\innerp}[1]{\left\langle {#1} \right\rangle}              % Inner product
+
