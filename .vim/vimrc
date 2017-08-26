@@ -1,0 +1,8 @@
+" Package manager
+execute pathogen#infect()
+
+" Source out the other default settings (in the vimrc folder of this directory)
+for f in split(glob(g:localvim . "/vimrc.d/**/*.vim"), '\n')
+    exe 'source' f
+endfor
+
