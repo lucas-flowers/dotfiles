@@ -1,0 +1,79 @@
+---
+title: .dotfiles repo
+...
+
+Introduction
+============
+
+This is a git repo for all my (important) dotfiles.
+
+Source: https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
+
+Creating from Existing Repo
+===========================
+
+Alias `git` to make things easier (the alias should already be in the repo's
+`.bashrc` or `.zshrc` or whatever, but we don't have that `.*rc` file yet):
+
+    alias cfg='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree 
+
+Do a good old clone:
+
+    git clone --bare <URL> $HOME/.dotfiles
+
+Check that shit out:
+
+    cfg checkout
+
+This command may fail if there are files that exist in the remote repo and in the
+local home directory. Do something with those files (i.e., delete or move them)
+to fix that.
+
+Don't forget to ignore untracked files:
+
+    cfg config --local status.showUntrackedFiles no
+
+Submodules
+----------
+
+If there are submodules (such as `.oh-my-zsh` and vim plugins), git will *not*
+download those automatically (since only their commit IDs are downloaded, not
+the actuall commits). You'll need to initialize and update them:
+
+    cfg submodule init
+    cfg submodule update
+    
+Or:
+
+    cfg submodule update --init
+
+(This might need to be done recursively if your submodules have submodules,
+too.)
+
+Creating a New Dotfile Repo
+===========================
+
+This is for starting *totally* from scratch.
+
+Initialize:
+
+    git init --bare $HOME/.dotfiles
+
+The repo is `$HOME/.dotfiles`, but we want the work tree (i.e., the checked out
+files) to be in `$HOME` itself:
+
+    alias cfg='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree 
+
+(Add that alias to `.bashrc` or `.zshrc` or whatever.)
+
+Now ignore all untracked files, since a .gitignore would take too much work to
+manage:
+    
+    cfg config --local status.showUntrackedFiles no
+
+For the dotfiles repository, you usually should be using the `cfg` command (and
+not `git`) to add/remove/push/etc.
+
+Be sure that ".dotfiles" is in `.gitignore`, to avoid recursive Fun.
+
+<!-- vim: filetype=pandoc -->
