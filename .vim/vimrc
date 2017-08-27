@@ -1,6 +1,10 @@
 " Package manager
 execute pathogen#infect()
 
+if !exists('g:localvim')
+    let g:localvim="/$HOME/.vim/"
+endif
+
 " Source out the other default settings (in the vimrc folder of this directory)
 for f in split(glob(g:localvim . "/vimrc.d/**/*.vim"), '\n')
     exe 'source' f
