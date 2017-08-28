@@ -9,3 +9,5 @@
 [grep]
     perlRegexp = true
     perl-regexp = true
+[push]
+	default = simple
