@@ -1,19 +1,10 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-# Configuration repository
-alias cfg="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-
-# On OS X, use Homebrew's version of vim, not the default in `/bin/`
-if [[ "$HOSTNAME" = "osx" ]]; then
-    alias vim="/usr/local/bin/vim"
-elif [[ "$HOSTNAME" = "winlaptop" ]]; then
-
+if [[ "$HOSTNAME" = "winlaptop" ]]; then
     # Disable that fucking annoying windows bell
     setopt NO_BEEP
-
 fi
-
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -88,7 +79,7 @@ export KEYTIMEOUT=1
 # will overwrite PATH entries in Windows LXSS.
 
 # Paths to append to PATH
-for p in /usr/bin /bin /sbin /usr/sbin ~/.local/bin /usr/bin/X11 /usr/games /opt/context/tex/texmf-linux-64/bin/usr/local/bin ; do
+for p in /usr/bin /bin /sbin /usr/sbin ~/.local/bin /usr/bin/X11 /usr/games /opt/context/tex/texmf-linux-64/bin /usr/local/bin ; do
     case ":$PATH:" in
         *":$p:"*) :;;
         *) PATH="$PATH:$p";;
@@ -140,7 +131,7 @@ fi
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Configuration git repository
+alias cfg="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+
