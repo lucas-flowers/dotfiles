@@ -15,7 +15,7 @@ Creating from Existing Repo
 Alias `git` to make things easier (the alias should already be in the repo's
 `.bashrc` or `.zshrc` or whatever, but we don't have that `.*rc` file yet):
 
-    alias cfg='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree 
+    alias cfg='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree
 
 Do a good old clone:
 
@@ -42,7 +42,7 @@ the actuall commits). You'll need to initialize and update them:
 
     cfg submodule init
     cfg submodule update
-    
+
 Or:
 
     cfg submodule update --init
@@ -62,13 +62,13 @@ Initialize:
 The repo is `$HOME/.dotfiles`, but we want the work tree (i.e., the checked out
 files) to be in `$HOME` itself:
 
-    alias cfg='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree 
+    alias cfg='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree
 
 (Add that alias to `.bashrc` or `.zshrc` or whatever.)
 
 Now ignore all untracked files, since a .gitignore would take too much work to
 manage:
-    
+
     cfg config --local status.showUntrackedFiles no
 
 For the dotfiles repository, you usually should be using the `cfg` command (and
@@ -76,4 +76,6 @@ not `git`) to add/remove/push/etc.
 
 Be sure that ".dotfiles" is in `.gitignore`, to avoid recursive Fun.
 
-<!-- vim: filetype=pandoc -->
+<!--
+vim: filetype=pandoc
+-->
