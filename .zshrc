@@ -1,19 +1,10 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-# Configuration repository
-alias cfg="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-
-# On OS X, use Homebrew's version of vim, not the default in `/bin/`
-if [[ "$HOSTNAME" = "osx" ]]; then
-    alias vim="/usr/local/bin/vim"
-elif [[ "$HOSTNAME" = "winlaptop" ]]; then
-
-    # Disable that fucking annoying windows bell
+# Disable that fucking annoying windows bell
+if [[ "$HOSTNAME" = "winlaptop" ]]; then
     setopt NO_BEEP
-
 fi
-
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -140,7 +131,12 @@ fi
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Git repository for configuration dotfiles
+alias cfg="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+
+# On OS X, use Homebrew's version of vim, not the default in `/bin/`
+if [[ "$HOSTNAME" = "osx" ]]; then
+    alias vim="/usr/local/bin/vim"
+fi
+
