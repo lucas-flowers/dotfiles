@@ -1,8 +1,8 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+# Disable that fucking annoying windows bell
 if [[ "$HOSTNAME" = "winlaptop" ]]; then
-    # Disable that fucking annoying windows bell
     setopt NO_BEEP
 fi
 
