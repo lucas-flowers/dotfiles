@@ -1,8 +1,14 @@
 " Package manager
 execute pathogen#infect()
 
+" Set local vim files folder (`vimfiles` for Windows and `.vim` for everything
+" else). If vim files are in another folder, this should already be set.
 if !exists('g:localvim')
-    let g:localvim="/$HOME/.vim/"
+    if has('win32') || has('win64')
+        let g:localvim="$HOME/vimfiles/"
+    else
+        let g:localvim="$HOME/.vim/"
+    endif
 endif
 
 " Source out the other default settings (in the vimrc folder of this directory)
