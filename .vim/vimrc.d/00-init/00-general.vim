@@ -1,7 +1,3 @@
-" Package manager
-execute pathogen#infect()
-" Have pathogen generate help files from the plugins installed
-Helptags
 
 " Leader key is the comma; remap '\' to ',' to keep reverse character search
 let mapleader = ","

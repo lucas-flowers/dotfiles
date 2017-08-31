@@ -1,6 +1,9 @@
 " Package manager
 execute pathogen#infect()
 
+" Have pathogen generate help files from the plugins installed
+Helptags
+
 " Set local vim files folder (`vimfiles` for Windows and `.vim` for everything
 " else). If vim files are in another folder, this should already be set.
 if !exists('g:localvim')
