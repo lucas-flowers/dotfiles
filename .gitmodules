@@ -139,3 +139,6 @@
 [submodule ".dir_colors"]
 	path = .dir_colors
 	url = https://github.com/seebi/dircolors-solarized
+[submodule ".vim/bundle/vim-pathogen"]
+	path = .vim/bundle/vim-pathogen
+	url = https://github.com/tpope/vim-pathogen.git
