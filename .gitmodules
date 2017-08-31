@@ -138,4 +138,4 @@
 	url = https://github.com/wannesm/wmgraphviz.vim.git
 [submodule ".dir_colors"]
 	path = .dir_colors
-	url = ./.dir_colors
+	url = https://github.com/seebi/dircolors-solarized
