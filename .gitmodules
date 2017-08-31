@@ -1,144 +1,144 @@
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
-[submodule ".vim/bundle/ale"]
-	path = .vim/bundle/ale
+[submodule ".vim/pack/foo/start/ale"]
+	path = .vim/pack/foo/start/ale
 	url = https://github.com/w0rp/ale.git
-[submodule ".vim/bundle/ansible-vim"]
-	path = .vim/bundle/ansible-vim
+[submodule ".vim/pack/foo/start/ansible-vim"]
+	path = .vim/pack/foo/start/ansible-vim
 	url = https://github.com/pearofducks/ansible-vim.git
-[submodule ".vim/bundle/csv.vim"]
-	path = .vim/bundle/csv.vim
+[submodule ".vim/pack/foo/start/csv.vim"]
+	path = .vim/pack/foo/start/csv.vim
 	url = https://github.com/chrisbra/csv.vim.git
-[submodule ".vim/bundle/ctrlp.vim"]
-	path = .vim/bundle/ctrlp.vim
+[submodule ".vim/pack/foo/start/ctrlp.vim"]
+	path = .vim/pack/foo/start/ctrlp.vim
 	url = https://github.com/ctrlpvim/ctrlp.vim.git
-[submodule ".vim/bundle/fsharp-vim"]
-	path = .vim/bundle/fsharp-vim
+[submodule ".vim/pack/foo/start/fsharp-vim"]
+	path = .vim/pack/foo/start/fsharp-vim
 	url = https://github.com/kongo2002/fsharp-vim.git
-[submodule ".vim/bundle/goyo.vim"]
-	path = .vim/bundle/goyo.vim
+[submodule ".vim/pack/foo/start/goyo.vim"]
+	path = .vim/pack/foo/start/goyo.vim
 	url = https://github.com/junegunn/goyo.vim.git
-[submodule ".vim/bundle/icalendar.vim"]
-	path = .vim/bundle/icalendar.vim
+[submodule ".vim/pack/foo/start/icalendar.vim"]
+	path = .vim/pack/foo/start/icalendar.vim
 	url = https://github.com/vim-scripts/icalendar.vim.git
-[submodule ".vim/bundle/nerdtree"]
-	path = .vim/bundle/nerdtree
+[submodule ".vim/pack/foo/start/nerdtree"]
+	path = .vim/pack/foo/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
-[submodule ".vim/bundle/Recover.vim"]
-	path = .vim/bundle/Recover.vim
+[submodule ".vim/pack/foo/start/Recover.vim"]
+	path = .vim/pack/foo/start/Recover.vim
 	url = https://github.com/chrisbra/Recover.vim.git
-[submodule ".vim/bundle/stata-vim-syntax"]
-	path = .vim/bundle/stata-vim-syntax
+[submodule ".vim/pack/foo/start/stata-vim-syntax"]
+	path = .vim/pack/foo/start/stata-vim-syntax
 	url = https://github.com/zizhongyan/stata-vim-syntax.git
-[submodule ".vim/bundle/SyntaxRange"]
-	path = .vim/bundle/SyntaxRange
+[submodule ".vim/pack/foo/start/SyntaxRange"]
+	path = .vim/pack/foo/start/SyntaxRange
 	url = https://github.com/vim-scripts/SyntaxRange.git
-[submodule ".vim/bundle/tagbar"]
-	path = .vim/bundle/tagbar
+[submodule ".vim/pack/foo/start/tagbar"]
+	path = .vim/pack/foo/start/tagbar
 	url = https://github.com/majutsushi/tagbar.git
-[submodule ".vim/bundle/taglist.vim"]
-	path = .vim/bundle/taglist.vim
+[submodule ".vim/pack/foo/start/taglist.vim"]
+	path = .vim/pack/foo/start/taglist.vim
 	url = https://github.com/vim-scripts/taglist.vim.git
-[submodule ".vim/bundle/tcomment_vim"]
-	path = .vim/bundle/tcomment_vim
+[submodule ".vim/pack/foo/start/tcomment_vim"]
+	path = .vim/pack/foo/start/tcomment_vim
 	url = https://github.com/tomtom/tcomment_vim.git
-[submodule ".vim/bundle/tlib_vim"]
-	path = .vim/bundle/tlib_vim
+[submodule ".vim/pack/foo/start/tlib_vim"]
+	path = .vim/pack/foo/start/tlib_vim
 	url = https://github.com/tomtom/tlib_vim.git
-[submodule ".vim/bundle/undotree"]
-	path = .vim/bundle/undotree
+[submodule ".vim/pack/foo/start/undotree"]
+	path = .vim/pack/foo/start/undotree
 	url = https://github.com/mbbill/undotree.git
-[submodule ".vim/bundle/vim-airline"]
-	path = .vim/bundle/vim-airline
+[submodule ".vim/pack/foo/start/vim-airline"]
+	path = .vim/pack/foo/start/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
-[submodule ".vim/bundle/vim-airline-themes"]
-	path = .vim/bundle/vim-airline-themes
+[submodule ".vim/pack/foo/start/vim-airline-themes"]
+	path = .vim/pack/foo/start/vim-airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes.git
-[submodule ".vim/bundle/Vimball"]
-	path = .vim/bundle/Vimball
+[submodule ".vim/pack/foo/start/Vimball"]
+	path = .vim/pack/foo/start/Vimball
 	url = https://github.com/vim-scripts/Vimball.git
-[submodule ".vim/bundle/vim-bracketed-paste"]
-	path = .vim/bundle/vim-bracketed-paste
+[submodule ".vim/pack/foo/start/vim-bracketed-paste"]
+	path = .vim/pack/foo/start/vim-bracketed-paste
 	url = https://github.com/ConradIrwin/vim-bracketed-paste
-[submodule ".vim/bundle/vim-closetag"]
-	path = .vim/bundle/vim-closetag
+[submodule ".vim/pack/foo/start/vim-closetag"]
+	path = .vim/pack/foo/start/vim-closetag
 	url = https://github.com/alvan/vim-closetag.git
-[submodule ".vim/bundle/vim-colors-solarized"]
-	path = .vim/bundle/vim-colors-solarized
+[submodule ".vim/pack/foo/start/vim-colors-solarized"]
+	path = .vim/pack/foo/start/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
-[submodule ".vim/bundle/vim-commentary"]
-	path = .vim/bundle/vim-commentary
+[submodule ".vim/pack/foo/start/vim-commentary"]
+	path = .vim/pack/foo/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
-[submodule ".vim/bundle/vim-easymotion"]
-	path = .vim/bundle/vim-easymotion
+[submodule ".vim/pack/foo/start/vim-easymotion"]
+	path = .vim/pack/foo/start/vim-easymotion
 	url = https://github.com/easymotion/vim-easymotion.git
-[submodule ".vim/bundle/vim-fugitive"]
-	path = .vim/bundle/vim-fugitive
+[submodule ".vim/pack/foo/start/vim-fugitive"]
+	path = .vim/pack/foo/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule ".vim/bundle/vim-grammarous"]
-	path = .vim/bundle/vim-grammarous
+[submodule ".vim/pack/foo/start/vim-grammarous"]
+	path = .vim/pack/foo/start/vim-grammarous
 	url = https://github.com/rhysd/vim-grammarous.git
-[submodule ".vim/bundle/vim-indent-object"]
-	path = .vim/bundle/vim-indent-object
+[submodule ".vim/pack/foo/start/vim-indent-object"]
+	path = .vim/pack/foo/start/vim-indent-object
 	url = https://github.com/michaeljsmith/vim-indent-object.git
-[submodule ".vim/bundle/vim-java-bytecode"]
-	path = .vim/bundle/vim-java-bytecode
+[submodule ".vim/pack/foo/start/vim-java-bytecode"]
+	path = .vim/pack/foo/start/vim-java-bytecode
 	url = https://github.com/neapel/vim-java-bytecode.git
-[submodule ".vim/bundle/vim-javascript"]
-	path = .vim/bundle/vim-javascript
+[submodule ".vim/pack/foo/start/vim-javascript"]
+	path = .vim/pack/foo/start/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
-[submodule ".vim/bundle/vim-jsx"]
-	path = .vim/bundle/vim-jsx
+[submodule ".vim/pack/foo/start/vim-jsx"]
+	path = .vim/pack/foo/start/vim-jsx
 	url = https://github.com/mxw/vim-jsx.git
-[submodule ".vim/bundle/vim-latex"]
-	path = .vim/bundle/vim-latex
+[submodule ".vim/pack/foo/start/vim-latex"]
+	path = .vim/pack/foo/start/vim-latex
 	url = https://github.com/vim-latex/vim-latex.git
-[submodule ".vim/bundle/vim-mipssyntax"]
-	path = .vim/bundle/vim-mipssyntax
+[submodule ".vim/pack/foo/start/vim-mipssyntax"]
+	path = .vim/pack/foo/start/vim-mipssyntax
 	url = https://github.com/Harenome/vim-mipssyntax.git
-[submodule ".vim/bundle/vim-multiple-cursors"]
-	path = .vim/bundle/vim-multiple-cursors
+[submodule ".vim/pack/foo/start/vim-multiple-cursors"]
+	path = .vim/pack/foo/start/vim-multiple-cursors
 	url = https://github.com/terryma/vim-multiple-cursors.git
-[submodule ".vim/bundle/vim-pandoc-syntax"]
-	path = .vim/bundle/vim-pandoc-syntax
+[submodule ".vim/pack/foo/start/vim-pandoc-syntax"]
+	path = .vim/pack/foo/start/vim-pandoc-syntax
 	url = https://github.com/vim-pandoc/vim-pandoc-syntax.git
-[submodule ".vim/bundle/vim-pencil"]
-	path = .vim/bundle/vim-pencil
+[submodule ".vim/pack/foo/start/vim-pencil"]
+	path = .vim/pack/foo/start/vim-pencil
 	url = https://github.com/reedes/vim-pencil
-[submodule ".vim/bundle/vim-ps1"]
-	path = .vim/bundle/vim-ps1
+[submodule ".vim/pack/foo/start/vim-ps1"]
+	path = .vim/pack/foo/start/vim-ps1
 	url = https://github.com/PProvost/vim-ps1.git
-[submodule ".vim/bundle/vim-python-pep8-indent"]
-	path = .vim/bundle/vim-python-pep8-indent
+[submodule ".vim/pack/foo/start/vim-python-pep8-indent"]
+	path = .vim/pack/foo/start/vim-python-pep8-indent
 	url = https://github.com/Vimjas/vim-python-pep8-indent.git
-[submodule ".vim/bundle/vim-surround"]
-	path = .vim/bundle/vim-surround
+[submodule ".vim/pack/foo/start/vim-surround"]
+	path = .vim/pack/foo/start/vim-surround
 	url = https://github.com/tpope/vim-surround.git
-[submodule ".vim/bundle/vim-table-mode"]
-	path = .vim/bundle/vim-table-mode
+[submodule ".vim/pack/foo/start/vim-table-mode"]
+	path = .vim/pack/foo/start/vim-table-mode
 	url = https://github.com/dhruvasagar/vim-table-mode.git
-[submodule ".vim/bundle/vim-textobj-argument"]
-	path = .vim/bundle/vim-textobj-argument
+[submodule ".vim/pack/foo/start/vim-textobj-argument"]
+	path = .vim/pack/foo/start/vim-textobj-argument
 	url = https://github.com/gaving/vim-textobj-argument.git
-[submodule ".vim/bundle/vim-textobj-conflict"]
-	path = .vim/bundle/vim-textobj-conflict
+[submodule ".vim/pack/foo/start/vim-textobj-conflict"]
+	path = .vim/pack/foo/start/vim-textobj-conflict
 	url = https://github.com/rhysd/vim-textobj-conflict.git
-[submodule ".vim/bundle/vim-textobj-latex"]
-	path = .vim/bundle/vim-textobj-latex
+[submodule ".vim/pack/foo/start/vim-textobj-latex"]
+	path = .vim/pack/foo/start/vim-textobj-latex
 	url = https://github.com/rbonvall/vim-textobj-latex.git
-[submodule ".vim/bundle/vim-textobj-quote"]
-	path = .vim/bundle/vim-textobj-quote
+[submodule ".vim/pack/foo/start/vim-textobj-quote"]
+	path = .vim/pack/foo/start/vim-textobj-quote
 	url = https://github.com/reedes/vim-textobj-quote.git
-[submodule ".vim/bundle/vim-textobj-user"]
-	path = .vim/bundle/vim-textobj-user
+[submodule ".vim/pack/foo/start/vim-textobj-user"]
+	path = .vim/pack/foo/start/vim-textobj-user
 	url = https://github.com/kana/vim-textobj-user.git
-[submodule ".vim/bundle/wmgraphviz.vim"]
-	path = .vim/bundle/wmgraphviz.vim
+[submodule ".vim/pack/foo/start/wmgraphviz.vim"]
+	path = .vim/pack/foo/start/wmgraphviz.vim
 	url = https://github.com/wannesm/wmgraphviz.vim.git
 [submodule ".dir_colors"]
 	path = .dir_colors
 	url = https://github.com/seebi/dircolors-solarized
-[submodule ".vim/bundle/vim-pathogen"]
-	path = .vim/bundle/vim-pathogen
+[submodule ".vim/pack/foo/start/vim-pathogen"]
+	path = .vim/pack/foo/start/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen.git
