@@ -35,7 +35,6 @@ function LineSetting()
     :set cursorline
     :set nowrap
     let g:short_lines=1
-    call pencil#init({'wrap': 'off'})
 endfunction
 " This setting is preferred
 call LineSetting()
@@ -49,7 +48,6 @@ function NoLineSetting()
     :set nocursorline
     :set wrap
     let g:short_lines=0
-    call pencil#init({'wrap': 'soft'})
 endfunction
 
 " Provide a toggle for short vs. long lines
