@@ -3,12 +3,12 @@ export ZSH=$HOME/.oh-my-zsh
 
 # Set dir colors for GNU ls, since the defaults are hard to read for some
 # filetypes, particularly symlinks  (macOS does not use GNU)
-if [[ "$HOSTNAME" != "osx" ]]; then
+if [[ "$HOST" != "osx" ]]; then
     eval `dircolors ~/.dir_colors/dircolors.ansi-light`
 fi
 
 # Disable that fucking annoying windows bell
-if [[ "$HOSTNAME" = "winlaptop" ]]; then
+if [[ "$HOST" = "winlaptop" ]]; then
     setopt NO_BEEP
 fi
 

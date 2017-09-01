@@ -25,7 +25,7 @@ if has('win32')
 " Not Windows
 else
 
-    if hostname() == "desktop" || hostname() == "laptop" || hostname() == "osx.local"
+    if hostname() == "desktop" || hostname() == "laptop" || hostname() == "osx"
         set shell=zsh
     else
         set shell=bash
