@@ -25,11 +25,8 @@ if has('win32')
 " Not Windows
 else
 
-    if hostname() == "desktop" || hostname() == "laptop" || hostname() == "osx"
-        set shell=zsh
-    else
-        set shell=bash
-    endif
+    " zsh for life
+    set shell=zsh
 
     let defaultstart = 'silent !'
     let defaultpdf = 'sumatrapdf'
