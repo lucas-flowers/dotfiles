@@ -1,6 +1,10 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+# In case there never was a login (i.e., Windows LXSS) or if things have
+# changed since login
+source .zprofile
+
 # Set dir colors for GNU ls, since the defaults are hard to read for some
 # filetypes, particularly symlinks  (macOS does not use GNU)
 if [[ "$HOST" != "osx" ]]; then
