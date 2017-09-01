@@ -9,20 +9,22 @@ if !exists('g:localvim')
     endif
 endif
 
-" Bootstrap pathogen (even in Vim 8 this is needed for generating helptags and
-" pathogen is not loaded automatically).
-runtime pack/foo/start/vim-pathogen/autoload/pathogen.vim
+packadd vim-pathogen
 
-" If there is no native package manager (i.e., vim is not at least version
-" v8.0), run Pathogen infect to load the rest of the plugins. (Recent versions
-" of pathogen will know to look in pack/{}/start/ instead of the traditional
-" bundle/ location.)
 if v:version < 800
+    " If there is no native package manager (i.e., vim is not at least version
+    " v8.0), bootstrap Pathogen and use Pathogen infect to load the rest of the
+    " plugins. (Recent versions of pathogen will know to look in pack/{}/start/
+    " instead of the traditional bundle/ location.) Then, generate helptags
+    " with Pathogen.
+    runtime pack/foo/opt/vim-pathogen/autoload/pathogen.vim
     execute pathogen#infect()
+    execute pathogen#helptags()
+else
+    " Otherwise, we don't need pathogen, so just generate helptags with
+    " "helptags ALL". The silent is there to ignore read/write errors.
+    silent! helptags ALL
 endif
-
-" Have pathogen generate help files from the plugins installed
-execute pathogen#helptags()
 
 " Source out the other default settings (in the vimrc folder of this directory)
 for f in split(glob(g:localvim . "/vimrc.d/**/*.vim"), '\n')
