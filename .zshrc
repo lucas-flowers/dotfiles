@@ -71,30 +71,6 @@ TERM="xterm-256color"
 # enables the vim normal mode
 export KEYTIMEOUT=1
 
-# 2016-03-10 Note: /sbin and /usr/sbin added to this list for OS X, but
-# they're probably already available in Linux. Look for a way to remove
-# those two without screwing up OS X's zsh PATH
-#
-# 2016-06-22 Note: ConTeXt path added because the program is likely to
-# change significantly, faster, than Debian usually does. So it's installed
-# in /opt/context (and completely compartmentalized, i.e., portable;
-# uninstallation just requires deleting the folder and removal of this from
-# PATH)
-#
-# 2017-08-23 Note: Make sure the PATH is extended and not replaced because it
-# will overwrite PATH entries in Windows LXSS.
-
-# Paths to append to PATH
-for p in /usr/bin /bin /sbin /usr/sbin ~/.local/bin /usr/bin/X11 /usr/games /opt/context/tex/texmf-linux-64/bin /usr/local/bin ; do
-    case ":$PATH:" in
-        *":$p:"*) :;;
-        *) PATH="$PATH:$p";;
-    esac
-done
-
-# Keep only the first duplicates in $PATH and zsh's $path
-typeset -U PATH path
-
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
