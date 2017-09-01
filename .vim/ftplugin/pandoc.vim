@@ -2,9 +2,6 @@
 setlocal spell
 setlocal commentstring=<!--\ %s\ -->
 
-" Enable support for curly quotes, but do not do it automatically.
-call textobj#quote#init({'educate': 0})
-
 " Converting files with Pandoc's markdown syntax
 function PandocToPDF()
     " For personal note-taking: Venturis font, 12pt fontsize, 1 inch margins
