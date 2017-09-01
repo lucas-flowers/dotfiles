@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Add 'tags' to the info/exclude file of all vim plugin submodules. This
+# ensures that the submodules are not considered 'dirty' when doing 'cfg diff'.
+
+packages=$HOME/.dotfiles/modules/.vim/pack/*/*/*/info/exclude
+for submodule in $packages; do
+    if ! $(grep --fixed-strings --line-regexp --quiet "tags" "$submodule"); then
+        echo "excluding vim tags in $submodule"
+        echo "tags" >> "$submodule"
+    fi
+done
+
