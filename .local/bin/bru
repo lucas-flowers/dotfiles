@@ -1,0 +1,12 @@
+#!/bin/sh
+
+exe="$HOME/.wine/drive_c/Program Files/Bulk Rename Utility/Bulk Rename Utility.exe"
+
+# If there are more than zero arguments, convert them to wine paths
+if [ $# -gt 0 ]; then
+    winepath=$(winepath -w "$*")
+    wine "$exe" "$winepath"
+else
+    wine "$exe"
+fi
+

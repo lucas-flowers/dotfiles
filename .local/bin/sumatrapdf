@@ -1,0 +1,14 @@
+#!/bin/sh
+
+exe="$HOME/.wine/drive_c/Program Files/SumatraPDF/SumatraPDF.exe"
+
+# Note: Sending stderr to /dev/null because of errors keep being printed even
+# though SumatraPDF still works.
+if [ $# -gt 0 ]; then
+    winepath=$(winepath -w "$*")
+    wine "$exe" "$winepath" 2>/dev/null
+    wmctrl -a :ACTIVE: # open in foreground
+else
+    wine "$exe" 2>/dev/null
+fi
+
