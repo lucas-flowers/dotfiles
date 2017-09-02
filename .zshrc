@@ -1,42 +1,18 @@
+
+# This is the configuration file for *interactive* sessions of zsh.
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-# In case there never was a login (i.e., Windows LXSS) or if things have
-# changed since login
-source $HOME/.zprofile
+# I've stored environment stuff in .profile, for use by different shells
+source $HOME/.profile
 
-# Set dir colors for GNU ls, since the defaults are hard to read for some
-# filetypes, particularly symlinks  (macOS does not use GNU)
-if [[ "$HOST" != "osx" ]]; then
-    eval `dircolors ~/.dir_colors/dircolors.ansi-light`
-fi
-
-# Disable that fucking annoying windows bell
-if [[ "$HOST" = "winlaptop" ]]; then
-    setopt NO_BEEP
-fi
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-#ZSH_THEME="robbyrussell"
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+# Keep only the first insance of any duplicates in $PATH and zsh's path
+typeset -U PATH path
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 DISABLE_AUTO_TITLE="true"
@@ -45,7 +21,7 @@ DISABLE_AUTO_TITLE="true"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -57,67 +33,44 @@ DISABLE_AUTO_TITLE="true"
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="yyyy-mm-dd"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git vi-mode)
 
-# User configuration
-
-# This is a 256-color terminal damn it
-TERM="xterm-256color"
+###############################################################################
+###############################################################################
+#### User Configuration                                                    ####
+###############################################################################
+###############################################################################
 
 # Removes an annoying delay (default: 4=0.4 seconds) before pressing <ESC>
 # enables the vim normal mode
 export KEYTIMEOUT=1
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
 source $ZSH/oh-my-zsh.sh
+
+# Set dir colors for GNU ls, since the defaults are hard to read for some
+# filetypes, particularly symlinks
+if command -v dircolors &>/dev/null ; then
+    eval `dircolors ~/.dir_colors/dircolors.ansi-light`
+fi
 
 # what's wrong with the bash prompt?
 PROMPT="%{$fg[blue]%}%n@%m:%{$fg_no_bold[yellow]%}%0~%{$reset_color%}%# "
 MODE_INDICATOR="%{$fg_bold[red]%}[NORMAL]%{$reset_color%}"
 
-# Use python3 for new virtual environments
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-
-# Python virtualenvwrapper
-export WORKON_HOME=~/.virtualenvs
-# export PROJECT_HOME=~/Devel # I'd rather not set this until I need it
-VIRTUALENVWRAPPER_SH=/usr/local/bin/virtualenvwrapper.sh
-if [ -f $VIRTUALENVWRAPPER_SH ]; then
-    source $VIRTUALENVWRAPPER_SH
-fi
-
 # Allow ConTeXt to find fonts
 # OSFONTDIR="/usr/local/share/fonts;$HOME/.fonts"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+# Disable that fucking annoying windows bell
+if [[ "$HOST" = "winlaptop" ]]; then
+    setopt NO_BEEP
+fi
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-
-# Configuration git repository
-alias cfg="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+# Aliases. These aliases will override any that oh-my-zsh libraries, plugins,
+# and themes provide. (Note that oh-my-zsh recommends putting aliases in
+# ZSH_CUSTOM. Maybe put zsh-specific aliases there?)
+source ~/.bash_aliases
 
