@@ -1,7 +1,12 @@
-#!/bin/sh
 
-# Extend the PATH variable. (We're extending instead of replacing because
-# Windows paths in LXSS will be lost if we're replacing it.)
+# I use this file to store environment variables (particularly PATH) for bash,
+# zsh, and other shells to read or source.
+
+###############################################################################
+###############################################################################
+#### PATH                                                                  ####
+###############################################################################
+###############################################################################
 
 # These should already be in PATH. But add them to the end, just in case.
 # (Example: /sbin and /usr/sbin are not automatically included in macOS.)
@@ -22,4 +27,31 @@ for p in $paths_prepend ; do
           *) PATH="$p:$PATH";;
       esac
 done
+
+# If for some god-forsaken reason the $HOME/bin directory exists, add that to
+# the front
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+###############################################################################
+###############################################################################
+#### Other Environment Variables                                           ####
+###############################################################################
+###############################################################################
+
+# If there is a terminal that doesn't support 256 colors by this point, I don't
+# want to live.
+export TERM="xterm-256color"
+
+# Use python3 for new virtual environments
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+
+# Python virtualenvwrapper
+export WORKON_HOME=~/.virtualenvs
+# export PROJECT_HOME=~/Devel # I'd rather not set this until I need it
+VIRTUALENVWRAPPER_SH=/usr/local/bin/virtualenvwrapper.sh
+if [ -f $VIRTUALENVWRAPPER_SH ]; then
+    source $VIRTUALENVWRAPPER_SH
+fi
 
