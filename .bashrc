@@ -29,7 +29,6 @@
 # programs like KDE
 source $HOME/.profile
 
-shopt -s checkwinsize # Update window lines and columns after each command
 shopt -s globstar # Allow '**' as a glob pattern
 shopt -s histappend # Append to history; don't overwrite
 
@@ -51,6 +50,9 @@ if [[ -n $PS1 ]] ; then
     ###########################################################################
     ## Interactive Shells                                                    ##
     ###########################################################################
+ 
+    # Update window lines and columns after each command
+    shopt -s checkwinsize
 
     # <blue:<user>@<host>:><yellow:<working_directory>><normal:$ >
     PS1='\e[34m\u@\h:\e[33m\W\e[0m\$ '
