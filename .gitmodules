@@ -136,3 +136,6 @@
 [submodule ".vim/pack/foo/opt/vim-pathogen"]
 	path = .vim/pack/foo/opt/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen.git
+[submodule ".vim/pack/foo/start/vim-unimpaired"]
+	path = .vim/pack/foo/start/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
