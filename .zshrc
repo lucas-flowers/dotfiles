@@ -7,6 +7,9 @@ export ZSH=$HOME/.oh-my-zsh
 # I've stored environment stuff in .profile, for use by different shells
 source $HOME/.profile
 
+# Sometimes (*cough* WSL *cough*) SHELL is still set to bash; fix it
+export SHELL='zsh'
+
 # Keep only the first insance of any duplicates in $PATH and zsh's path
 typeset -U PATH path
 
