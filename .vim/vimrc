@@ -4,7 +4,7 @@ if v:version < 800
     " v8.0), bootstrap Pathogen and use Pathogen infect to load the rest of the
     " plugins from the new pack/*/start/ location (instead of the traditional
     " bundle/ location). Then, generate helptags with Pathogen.
-    runtime opt vim-pathogen/autoload/pathogen.vim
+    runtime pack/foo/opt/vim-pathogen/autoload/pathogen.vim
     execute pathogen#infect('pack/{}/start/{}')
     execute pathogen#helptags()
 else
