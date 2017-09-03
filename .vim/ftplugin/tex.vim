@@ -16,7 +16,7 @@ setlocal spell
 autocmd FileType tex call Tex_MakeMap('<leader>ll', ':update!<CR>:call Tex_RunLaTeX()<CR>', 'n', '<buffer>')
 autocmd FileType tex call Tex_MakeMap('<leader>ll', '<ESC>:update!<CR>:call Tex_RunLaTeX()<CR>', 'v', '<buffer>')
 
-# XeLaTeX
+" XeLaTeX
 autocmd FileType tex call Tex_MakeMap('<leader>lx', ':update!<CR>:call ftplugin#tex#CompileXeLaTeX()<CR>', 'n', '<buffer>')
 autocmd FileType tex call Tex_MakeMap('<leader>lx', '<ESC>:update!<CR>:call ftplugin#tex#CompileXeLaTeX()<CR>', 'v', '<buffer>')
 
