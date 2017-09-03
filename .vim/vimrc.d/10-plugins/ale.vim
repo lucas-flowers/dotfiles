@@ -12,7 +12,7 @@
 " For Java, use eclim
 let g:ale_linters = {
             \ 'python' : ['pylint'],
-            \ 'java' : [],
+            \ 'java' : ['javac'],
             \ 'tex' : [],
             \ 'yaml' : ['yamllint'],
             \}
