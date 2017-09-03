@@ -16,9 +16,6 @@
 [submodule ".vim/pack/foo/start/fsharp-vim"]
 	path = .vim/pack/foo/start/fsharp-vim
 	url = https://github.com/kongo2002/fsharp-vim.git
-[submodule ".vim/pack/foo/start/goyo.vim"]
-	path = .vim/pack/foo/start/goyo.vim
-	url = https://github.com/junegunn/goyo.vim.git
 [submodule ".vim/pack/foo/start/icalendar.vim"]
 	path = .vim/pack/foo/start/icalendar.vim
 	url = https://github.com/vim-scripts/icalendar.vim.git
@@ -58,9 +55,6 @@
 [submodule ".vim/pack/foo/start/Vimball"]
 	path = .vim/pack/foo/start/Vimball
 	url = https://github.com/vim-scripts/Vimball.git
-[submodule ".vim/pack/foo/start/vim-bracketed-paste"]
-	path = .vim/pack/foo/start/vim-bracketed-paste
-	url = https://github.com/ConradIrwin/vim-bracketed-paste
 [submodule ".vim/pack/foo/start/vim-closetag"]
 	path = .vim/pack/foo/start/vim-closetag
 	url = https://github.com/alvan/vim-closetag.git
