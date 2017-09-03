@@ -52,7 +52,15 @@ if [[ -n $PS1 ]] ; then
     ## Interactive Shells                                                    ##
     ###########################################################################
 
-    : # Do nothing
+    # <blue:<user>@<host>:><yellow:<working_directory>><normal:$ >
+    PS1='\e[34m\u@\h:\e[33m\W\e[0m\$ '
+
+    # Set dir colors for GNU ls, since the defaults are hard to read for some
+    # filetypes, particularly symlinks
+    if command -v dircolors &>/dev/null ; then
+        eval `dircolors $HOME/.dir_colors/dircolors.ansi-light`
+        alias ls='ls --color=auto'
+    fi
 
 else
 

@@ -51,15 +51,15 @@ export KEYTIMEOUT=1
 
 source $ZSH/oh-my-zsh.sh
 
+# what's wrong with the bash prompt?
+PROMPT="%{$fg[blue]%}%n@%m:%{$fg_no_bold[yellow]%}%0~%{$reset_color%}%# "
+MODE_INDICATOR="%{$fg_bold[red]%}[NORMAL]%{$reset_color%}"
+
 # Set dir colors for GNU ls, since the defaults are hard to read for some
 # filetypes, particularly symlinks
 if command -v dircolors &>/dev/null ; then
     eval `dircolors ~/.dir_colors/dircolors.ansi-light`
 fi
-
-# what's wrong with the bash prompt?
-PROMPT="%{$fg[blue]%}%n@%m:%{$fg_no_bold[yellow]%}%0~%{$reset_color%}%# "
-MODE_INDICATOR="%{$fg_bold[red]%}[NORMAL]%{$reset_color%}"
 
 # Allow ConTeXt to find fonts
 # OSFONTDIR="/usr/local/share/fonts;$HOME/.fonts"
