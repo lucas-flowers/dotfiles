@@ -29,8 +29,13 @@ if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gno
   set t_Co=256
 endif
 
-" No toolbar or scrollbars in givm
-set guioptions-=T " remove toolbar
-set guioptions-=r " remove right-hand scroll bar
-set guioptions-=L " remove left-hand scroll bar
+if has('gui_running')
 
+    colorscheme solarized
+
+    " No toolbar or scrollbars in givm
+    set guioptions-=T " remove toolbar
+    set guioptions-=r " remove right-hand scroll bar
+    set guioptions-=L " remove left-hand scroll bar
+
+endif

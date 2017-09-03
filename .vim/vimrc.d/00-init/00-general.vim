@@ -20,7 +20,7 @@ set shiftwidth=4
 set indentexpr=
 
 " Allow special vim settings for individual files (placed near end or beginning
-" of the file
+" of the file)
 set modeline
 
 " Searches are case-insensitive *except* when there is an uppercase letter

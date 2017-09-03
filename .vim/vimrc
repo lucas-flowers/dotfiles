@@ -1,21 +1,11 @@
 
-" Set local vim files folder (`vimfiles` for Windows and `.vim` for everything
-" else). If vim files are in another folder, this should already be set.
-if !exists('g:localvim')
-    if has('win32')
-        let g:localvim="$HOME/vimfiles/"
-    else
-        let g:localvim="$HOME/.vim/"
-    endif
-endif
-
 if v:version < 800
     " If there is no native package manager (i.e., vim is not at least version
     " v8.0), bootstrap Pathogen and use Pathogen infect to load the rest of the
-    " plugins from the new pack/foo/start/ location (instead of the traditional
+    " plugins from the new pack/*/start/ location (instead of the traditional
     " bundle/ location). Then, generate helptags with Pathogen.
-    runtime pack/foo/opt/vim-pathogen/autoload/pathogen.vim
-    execute pathogen#infect(g:localvim . 'pack/foo/start/{}')
+    runtime opt vim-pathogen/autoload/pathogen.vim
+    execute pathogen#infect('pack/{}/start/{}')
     execute pathogen#helptags()
 else
     " Otherwise, we don't need pathogen, so just generate helptags with
@@ -24,7 +14,5 @@ else
 endif
 
 " Source out the other default settings (in the vimrc folder of this directory)
-for f in split(glob(g:localvim . "/vimrc.d/**/*.vim"), '\n')
-    exe 'source' f
-endfor
+runtime! vimrc.d/*/*.vim
 
