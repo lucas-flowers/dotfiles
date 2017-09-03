@@ -16,15 +16,9 @@ setlocal spell
 autocmd FileType tex call Tex_MakeMap('<leader>ll', ':update!<CR>:call Tex_RunLaTeX()<CR>', 'n', '<buffer>')
 autocmd FileType tex call Tex_MakeMap('<leader>ll', '<ESC>:update!<CR>:call Tex_RunLaTeX()<CR>', 'v', '<buffer>')
 
-" Compiling with XeLaTeX
-function! CompileXeLaTex()
-    let oldCompileRule=g:Tex_CompileRule_pdf
-    let g:Tex_CompileRule_pdf = 'xelatex --synctex=-1 -src-specials -interaction=nonstopmode -shell-escape $*'
-    call Tex_RunLaTeX()
-    let g:Tex_CompileRule_pdf=oldCompileRule
-endfunction
-autocmd FileType tex call Tex_MakeMap('<leader>lx', ':update!<CR>:call CompileXeLaTex()<CR>', 'n', '<buffer>')
-autocmd FileType tex call Tex_MakeMap('<leader>lx', '<ESC>:update!<CR>:call CompileXeLaTex()<CR>', 'v', '<buffer>')
+# XeLaTeX
+autocmd FileType tex call Tex_MakeMap('<leader>lx', ':update!<CR>:call ftplugin#tex#CompileXeLaTeX()<CR>', 'n', '<buffer>')
+autocmd FileType tex call Tex_MakeMap('<leader>lx', '<ESC>:update!<CR>:call ftplugin#tex#CompileXeLaTeX()<CR>', 'v', '<buffer>')
 
 " The same hotkeys for files written in TeX
 " Underline a line by '-'
