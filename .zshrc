@@ -81,11 +81,6 @@ fi
 # Allow ConTeXt to find fonts
 # OSFONTDIR="/usr/local/share/fonts;$HOME/.fonts"
 
-# Disable that fucking annoying windows bell
-if [[ "$HOST" = "winlaptop" ]]; then
-    setopt NO_BEEP
-fi
-
 # Aliases. These aliases will override any that oh-my-zsh libraries, plugins,
 # and themes provide. (Note that oh-my-zsh recommends putting aliases in
 # ZSH_CUSTOM. Maybe put zsh-specific aliases there?)
