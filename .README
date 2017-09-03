@@ -50,6 +50,13 @@ Or:
 (This might need to be done recursively if your submodules have submodules,
 too.)
 
+Vim Helptags
+------------
+
+The Git repositories for some Vim plugins do not ignore helptag files. I wrote
+a scripted, `.exclude-tags` that will add "tags" to every Vim plugin's git
+directory (using `info/exclude` instead of .gitignore, which might be tracked).
+
 Creating a New Dotfile Repo
 ===========================
 
