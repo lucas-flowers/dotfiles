@@ -54,14 +54,26 @@ export KEYTIMEOUT=1
 
 source $ZSH/oh-my-zsh.sh
 
-# what's wrong with the bash prompt?
+# Prompt
 PROMPT="%{$fg[blue]%}%n@%m:%{$fg_no_bold[yellow]%}%0~%{$reset_color%}%# "
 MODE_INDICATOR="%{$fg_bold[red]%}[NORMAL]%{$reset_color%}"
 
-# Set dir colors for GNU ls, since the defaults are hard to read for some
-# filetypes, particularly symlinks
+# Set dir colors for GNU ls (if the dircolors exists) and zsh autocompletion,
+# since the defaults are hard to read for some filetypes, particularly symlinks
 if command -v dircolors &>/dev/null ; then
+
+    # Set the LS_COLORS variable using solarized colors
     eval `dircolors ~/.dir_colors/dircolors.ansi-light`
+
+    # Colors for zsh autocompletion. If the directories are insecure, use
+    # compaudit+chmod to find the insecure files and remove write permissions
+    # from everyone who's not the current user:
+    #
+    #   compaudit | xargs chmod go-w # (chown might be necessary, too)
+    #  
+    zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+    autoload -Uz compinit
+
 fi
 
 # Allow ConTeXt to find fonts
