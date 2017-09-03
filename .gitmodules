@@ -139,3 +139,6 @@
 [submodule ".vim/pack/foo/start/vim-unimpaired"]
 	path = .vim/pack/foo/start/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
+[submodule ".local/lib/markdown2ctags"]
+	path = .local/lib/markdown2ctags
+	url = https://github.com/jszakmeister/markdown2ctags.git

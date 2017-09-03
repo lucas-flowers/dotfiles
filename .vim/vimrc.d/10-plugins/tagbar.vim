@@ -12,7 +12,7 @@
 " Add support for markdown files in tagbar.
 let g:tagbar_type_pandoc = {
     \ 'ctagstype': 'pandoc',
-    \ 'ctagsbin' : g:localvim . '/markdown2ctags.py',
+    \ 'ctagsbin' : 'markdown2ctags',
     \ 'ctagsargs' : '-f - --sort=yes',
     \ 'kinds' : [
         \ 's:sections',
