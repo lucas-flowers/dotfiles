@@ -60,16 +60,16 @@ source $ZSH/oh-my-zsh.sh
 PROMPT="%{$fg[blue]%}%n@%m:%{$fg_no_bold[yellow]%}%0~%{$reset_color%}%# "
 MODE_INDICATOR="%{$fg_bold[red]%}[NORMAL]%{$reset_color%}"
 
-# Title bar
+# Title bar for xterm
 case $TERM in
     xterm*)
         precmd() {
-            # <<[n]ame>@<[m]achine>: <directory>>
-            print -Pn "\e]0;%n@%m : %~\a"
+            # <<[n]ame>@<[M]achine>: <directory>>
+            print -Pn "\e]0;%n@%M : %~\a"
         }
         preexec() {
             # <<[n]ame>@<[m]achine>: <command>>
-            print -PN "\e]0;%n@%m : $1\a"
+            print -PN "\e]0;%n@%M : $1\a"
         }
         ;;
 esac
