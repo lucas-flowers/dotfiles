@@ -63,15 +63,17 @@ MODE_INDICATOR="%{$fg_bold[red]%}[NORMAL]%{$reset_color%}"
 # Title bar for xterm
 case $TERM in
     xterm*)
+        title_begin='\033]2;'
+        title_end='\007'
         precmd() {
             # Show directory by default
             dir="$(print -P '%~')"
-            printf "%b${USER}@${HOST}: ${dir}%b" '\033]2;' '\007'
+            printf "${title_begin}${USER}@${HOST}: ${dir}${title_end}"
         }
         preexec() {
             # Show the command when a command is run
             cmd="$1"
-            printf "%b${USER}@${HOST}: ${cmd}%b" '\033]2;' '\007'
+            printf "${title_begin}${USER}@${HOST}: ${cmd}${title_end}"
         }
         ;;
 esac

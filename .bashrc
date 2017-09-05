@@ -66,17 +66,21 @@ if [[ -n $PS1 ]] ; then
             #   http://www.davidpashley.com/articles/xterm-titles-with-bash/)
             #   http://mg.pov.lt/blog/bash-prompt.html
 
+            # Title bar escape sequences for xterm
+            title_begin='\033]2;'
+            title_end='\007'
+
             # Title bar setter function
             preexec() {
                 case "$BASH_COMMAND" in
-                    *\033]*)
+                    *\033]*\;)
                         # The command in $BASH_COMMAND is also trying to mess
                         # with the title bar, so don't do anything
                         ;;
                     *)
                         # Show the command currently executed in the title bar
                         cmd="$BASH_COMMAND"
-                        printf "%b${USER}@${HOSTNAME}: ${cmd}%b" '\033]2;' '\007'
+                        printf "${title_begin}${USER}@${HOSTNAME}: ${cmd}${title_end}"
                         ;;
                 esac
             }
@@ -98,7 +102,7 @@ if [[ -n $PS1 ]] ; then
             # escape sequence to PS1 (which normally generates the bash prompt)
             # that will add the user, host, and directory to the window title
             # prior to printing the actual bash prompt from the old $PS1.
-            PS1=$(printf "%b${USER}@${HOSTNAME}: \w%b$PS1" '\033]2;' '\007')
+            PS1="${title_begin}${USER}@${HOSTNAME}: \w${title_end}$PS1"
 
             ;;
     esac
