@@ -1,5 +1,6 @@
 ---
 title: .dotfiles repo
+author: Lucas Flowers
 ...
 
 Introduction
@@ -21,13 +22,13 @@ Do a good old clone:
 
     git clone --bare <URL> $HOME/.dotfiles
 
-Check that shit out:
+Check it out:
 
     cfg checkout
 
-This command may fail if there are files that exist in the remote repo and in the
-local home directory. Do something with those files (i.e., delete or move them)
-to fix that.
+This command may fail if there are files that exist in the remote repo and in
+the local home directory. Do something with those files (i.e., delete or move
+them) to fix that.
 
 Don't forget to ignore untracked files:
 
@@ -38,14 +39,14 @@ Submodules
 
 If there are submodules (such as `.oh-my-zsh` and vim plugins), git will *not*
 download those automatically (since only their commit IDs are downloaded, not
-the actuall commits). You'll need to initialize and update them:
+the actual commits). You'll need to initialize and update them:
 
-    cfg submodule init
-    cfg submodule update
+    cfg submodule update --init
 
 Or:
 
-    cfg submodule update --init
+    cfg submodule init
+    cfg submodule update
 
 (This might need to be done recursively if your submodules have submodules,
 too.)
@@ -54,8 +55,9 @@ Vim Helptags
 ------------
 
 The Git repositories for some Vim plugins do not ignore helptag files. I wrote
-a scripted, `.exclude-tags` that will add "tags" to every Vim plugin's git
-directory (using `info/exclude` instead of .gitignore, which might be tracked).
+a script, `.local/bin/cfg-exclude-tags`, that will add "tags" to every Vim
+plugin's git directory (using `info/exclude` instead of .gitignore, which might
+be tracked).
 
 Creating a New Dotfile Repo
 ===========================
@@ -69,12 +71,12 @@ Initialize:
 The repo is `$HOME/.dotfiles`, but we want the work tree (i.e., the checked out
 files) to be in `$HOME` itself:
 
-    alias cfg='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree
+    alias cfg='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree'
 
-(Add that alias to `.bashrc` or `.zshrc` or whatever.)
+(I put this in `.bash_aliases`, which is sourced in `.bashrc` and `.zshrc`.)
 
 Now ignore all untracked files, since a .gitignore would take too much work to
-manage:
+maintain:
 
     cfg config --local status.showUntrackedFiles no
 
