@@ -54,38 +54,54 @@ if [[ -n $PS1 ]] ; then
     # Update window lines and columns after each command
     shopt -s checkwinsize
 
-    # Prompt (34m: blue; 33m: yellow; 0m: normal)
-    PS1="\e[34m${USERS}@${HOSTNAME}:\e[33m\w\e[0m\$ "
+    # Prompt
+    blue='\033[34m' ; yellow='\033[33m' ; normal='\033[0m'
+    PS1=$(printf "%b${USER}@${HOSTNAME}:%b\w%b\$ " "$blue" "$yellow" "$normal")
 
-    # Title bar setter. Echoes the user, host, and command to the title bar.
-    show_command_in_title_bar() {
-        # Sources:
-        #   http://www.davidpashley.com/articles/xterm-titles-with-bash/)
-        #   http://mg.pov.lt/blog/bash-prompt.html
-        case "$BASH_COMMAND" in
-            *\033]0*)
-                # The command in $BASH_COMMAND is also trying to mess with the
-                # title bar, so don't do anything
-                ;;
-            *)
-                # Set the title bar
-                echo -ne "\033]0;${USER}@${HOSTNAME}: ${BASH_COMMAND}\007"
-                ;;
-        esac
-    }
+    # Title bar for xterm
+    case $TERM in
+        xterm*)
 
-    # DEBUG: Ensures `trap show_command_in_title_bar` is called before
-    # executing almost every command.
-    #
-    # trap: Freezes $BASH_COMMAND to the current command being called, then
-    # calls show_command_in_title_bar. This ensures that the echo inside
-    # show_command_in_title_bar outputs the command that was just called and
-    # not `echo -ne ...` itself.
-    trap show_command_in_title_bar DEBUG
+            # Sources:
+            #   http://www.davidpashley.com/articles/xterm-titles-with-bash/)
+            #   http://mg.pov.lt/blog/bash-prompt.html
 
-    # Insert the username, hostname, and working directory in the titlebar
-    # before setting the prompt. (This sets the default titlebar content.)
-    export PS1="\033]0;${USER}@${HOSTNAME}: \w\007$PS1"
+            # Title bar setter function
+            preexec() {
+                case "$BASH_COMMAND" in
+                    *\033]*)
+                        # The command in $BASH_COMMAND is also trying to mess
+                        # with the title bar, so don't do anything
+                        ;;
+                    *)
+                        # Show the command currently executed in the title bar
+                        cmd="$BASH_COMMAND"
+                        printf "%b${USER}@${HOSTNAME}: ${cmd}%b" '\033]2;' '\007'
+                        ;;
+                esac
+            }
+
+            # DEBUG ensures `trap preexec` runs immediately prior to (almost)
+            # every command executed.
+            #
+            # Now, the $BASH_COMMAND variable always stores the command
+            # currently executing. As seen in the code for preexec() above, if
+            # run without `trap`, this means $BASH_COMMAND will be empty (or at
+            # least not what we want it to be?). To fix this, we instead use
+            # `trap preexec`, which ensures that $BASH_COMMAND stores the
+            # command executing at the time of the trap (i.e., the command that
+            # triggered DEBUG to activate `trap preexec`).
+            trap preexec DEBUG
+
+            # After a command completes executing, we want the title bar to
+            # return to the user-host-directory format. To do this, we add an
+            # escape sequence to PS1 (which normally generates the bash prompt)
+            # that will add the user, host, and directory to the window title
+            # prior to printing the actual bash prompt from the old $PS1.
+            PS1=$(printf "%b${USER}@${HOSTNAME}: \w%b$PS1" '\033]2;' '\007')
+
+            ;;
+    esac
 
     # Set dir colors for GNU ls, since the defaults are hard to read for some
     # filetypes, particularly symlinks

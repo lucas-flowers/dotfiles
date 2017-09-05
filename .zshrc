@@ -64,12 +64,14 @@ MODE_INDICATOR="%{$fg_bold[red]%}[NORMAL]%{$reset_color%}"
 case $TERM in
     xterm*)
         precmd() {
-            # <<[n]ame>@<[M]achine>: <directory>>
-            print -Pn "\e]0;%n@%M: %~\a"
+            # Show directory by default
+            dir="$(print -P '%~')"
+            printf "%b${USER}@${HOST}: ${dir}%b" '\033]2;' '\007'
         }
         preexec() {
-            # <<[n]ame>@<[M]achine>: <command>>
-            print -PN "\e]0;%n@%M: $1\a"
+            # Show the command when a command is run
+            cmd="$1"
+            printf "%b${USER}@${HOST}: ${cmd}%b" '\033]2;' '\007'
         }
         ;;
 esac
