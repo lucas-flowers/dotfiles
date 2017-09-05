@@ -142,3 +142,6 @@
 [submodule ".local/lib/markdown2ctags"]
 	path = .local/lib/markdown2ctags
 	url = https://github.com/jszakmeister/markdown2ctags.git
+[submodule ".vim/pack/foo/start/vim-tmux"]
+	path = .vim/pack/foo/start/vim-tmux
+	url = git://github.com/tmux-plugins/vim-tmux.git
