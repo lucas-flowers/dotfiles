@@ -78,7 +78,7 @@ if [[ -n $PS1 ]] ; then
                         # with the title bar, so don't do anything
                         ;;
                     *)
-                        # Show the command currently executed in the title bar
+                        # Show the command currently being executed in the title bar
                         cmd="$BASH_COMMAND"
                         printf "${title_begin}${USER}@${HOSTNAME}: ${cmd}${title_end}"
                         ;;
