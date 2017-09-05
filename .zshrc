@@ -65,11 +65,11 @@ case $TERM in
     xterm*)
         precmd() {
             # <<[n]ame>@<[M]achine>: <directory>>
-            print -Pn "\e]0;%n@%M : %~\a"
+            print -Pn "\e]0;%n@%M: %~\a"
         }
         preexec() {
             # <<[n]ame>@<[M]achine>: <command>>
-            print -PN "\e]0;%n@%M : $1\a"
+            print -PN "\e]0;%n@%M: $1\a"
         }
         ;;
 esac
