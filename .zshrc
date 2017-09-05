@@ -68,7 +68,7 @@ case $TERM in
             print -Pn "\e]0;%n@%M : %~\a"
         }
         preexec() {
-            # <<[n]ame>@<[m]achine>: <command>>
+            # <<[n]ame>@<[M]achine>: <command>>
             print -PN "\e]0;%n@%M : $1\a"
         }
         ;;
