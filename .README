@@ -16,7 +16,7 @@ Creating from Existing Repo
 Alias `git` to make things easier (the alias should already be in the repo's
 `.bashrc` or `.zshrc` or whatever, but we don't have that `.*rc` file yet):
 
-    alias cfg='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree'
+    alias cfg="git --git-dir=\"$HOME/.dotfiles\" --work-tree=\"$HOME\""
 
 Do a good old clone:
 
