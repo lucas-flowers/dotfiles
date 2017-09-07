@@ -9,31 +9,36 @@
 ###############################################################################
 ###############################################################################
 
-# These should already be in PATH. But add them to the end, just in case.
-# (Example: /sbin and /usr/sbin are not automatically included in macOS.)
+# These should already be in PATH, but add them to the end if they exist, just
+# in case. (Example: /sbin and /usr/sbin are not automatically included in
+# macOS.)
 paths_append="/usr/local/sbin /usr/bin /bin /sbin /usr/sbin /usr/bin/X11 /usr/games /usr/local/games"
 for p in $paths_append ; do
-      case ":$PATH:" in
-          *":$p:"*) :;;
-          *) PATH="$PATH:$p";;
-      esac
+    case ":$PATH:" in
+        *":$p:"*)
+            : # already in PATH; do nothing
+            ;;
+        *)
+            # add path if it exists
+            if [ -d "$p" ] ; then PATH="$PATH:$p" ; fi
+            ;;
+    esac
 done
 
-# These paths are likely not to exist, and should go first. They are listed in
-# the reverse order that they'll be in PATH.
-paths_prepend="/usr/local/bin $HOME/.local/bin"
+# These paths are likely not to exist, but should go first if they do. They are
+# listed in the reverse order that they'll be in PATH.
+paths_prepend="/usr/local/bin $HOME/.local/bin $HOME/bin"
 for p in $paths_prepend ; do
-      case ":$PATH:" in
-          *":$p:"*) :;;
-          *) PATH="$p:$PATH";;
-      esac
+    case ":$PATH:" in
+        *":$p:"*)
+            : # already in PATH; do nothing
+            ;;
+        *)
+            # add path if it exists
+            if [ -d "$p" ] ; then PATH="$p:$PATH" ; fi
+            ;;
+    esac
 done
-
-# If for some god-forsaken reason the $HOME/bin directory exists, add that to
-# the front
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
 
 ###############################################################################
 ###############################################################################
