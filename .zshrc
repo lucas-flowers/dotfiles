@@ -78,13 +78,9 @@ case $TERM in
         ;;
 esac
 
-# Set dir colors for GNU ls (if the dircolors exists) and zsh autocompletion,
-# since the defaults are hard to read for some filetypes, particularly symlinks
-if command -v dircolors &>/dev/null ; then
-
-    # Set the LS_COLORS variable using solarized colors
-    eval `dircolors ~/.dir_colors/dircolors.ansi-light`
-
+# If LS_COLORS has been defined (i.e., `dircolors` was run), use those colors
+# for zsh autocompletion.
+if [ -n "$LS_COLORS" ] ; then
     # Colors for zsh autocompletion. If the directories are insecure, use
     # compaudit+chmod to find the insecure files and remove write permissions
     # from everyone who's not the current user:
@@ -93,11 +89,7 @@ if command -v dircolors &>/dev/null ; then
     #
     zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
     autoload -Uz compinit
-
 fi
-
-# Allow ConTeXt to find fonts
-# OSFONTDIR="/usr/local/share/fonts;$HOME/.fonts"
 
 # Aliases. These aliases will override any that oh-my-zsh libraries, plugins,
 # and themes provide. (Note that oh-my-zsh recommends putting aliases in

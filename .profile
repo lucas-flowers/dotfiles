@@ -1,3 +1,4 @@
+#!/bin/sh
 
 # I use this file to store environment variables (particularly PATH) for bash,
 # zsh, and other shells to read or source.
@@ -51,3 +52,25 @@ if [ -f $VIRTUALENVWRAPPER_SH ]; then
     source $VIRTUALENVWRAPPER_SH
 fi
 
+###############################################################################
+###############################################################################
+#### Interactive Shells                                                    ####
+###############################################################################
+###############################################################################
+
+if [ -n "$PS1" ] ; then
+
+    # Set up colors for ls
+    colors="$HOME/.dir_colors/dircolors.ansi-light"
+    if command -v dircolors >/dev/null 2>&1 ; then
+        # Set LS_COLORS and alias ls
+        eval "$(dircolors "$colors")"
+        alias ls='ls --color=auto'
+    elif command -v gdircolors >/dev/null 2>&1 ; then
+        # If only gdircolors exists, this suggests that the system doesn't
+        # support `--color=auto` (e.g., it's FreeBSD or macOS). Some programs
+        # might still use $LS_COLORS, though, so run gdircolors anyway.
+        eval "$(gdircolors "$colors")"
+    fi
+
+fi

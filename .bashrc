@@ -107,13 +107,6 @@ if [[ -n $PS1 ]] ; then
             ;;
     esac
 
-    # Set dir colors for GNU ls, since the defaults are hard to read for some
-    # filetypes, particularly symlinks
-    if command -v dircolors &>/dev/null ; then
-        eval `dircolors $HOME/.dir_colors/dircolors.ansi-light`
-        alias ls='ls --color=auto'
-    fi
-
 else
 
     ###########################################################################
