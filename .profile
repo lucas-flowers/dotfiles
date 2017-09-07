@@ -40,10 +40,6 @@ fi
 ###############################################################################
 ###############################################################################
 
-# If there is a terminal that doesn't support 256 colors by this point, I don't
-# want to live.
-export TERM="xterm-256color"
-
 # Use python3 for new virtual environments
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 
