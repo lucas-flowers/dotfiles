@@ -15,6 +15,8 @@ let g:ale_linters = {
             \ 'java' : ['javac'],
             \ 'tex' : [],
             \ 'yaml' : ['yamllint'],
+            \ 'sh' : ['shellcheck'],
+            \ 'bash' : ['shellcheck'],
             \}
 
 let g:ale_echo_msg_error_str = 'E'
