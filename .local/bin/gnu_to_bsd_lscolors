@@ -1,0 +1,133 @@
+#!/usr/bin/env python
+
+'''
+Takes LS_COLORS environment variable, converts it to a format suitable for
+BSD's LSCOLOR variable, and prints that to stdout.
+
+Sources: GNU ls.c source code and BSD man ls.
+'''
+
+import os
+
+# GNU file type labels in the order that they are read from LSCOLORS in BSD:
+# Where in GNU the LS_COLORS variable is a map of labels (and extensions) to
+# escape sequences, BSD's LSCOLORs is a string made up pairs of letters with
+# the Nth pair representing the color for the Nth filetype below.
+GNU_FILE_LABELS = [
+    'di', # directory
+    'ln', # symbolic link
+    'so', # socket
+    'pi', # pipe
+    'ex', # executable
+    'bd', # block special
+    'cd', # character special
+    'su', # executable, setuid set
+    'sg', # executable, setgid set
+    'tw', # directory writeable to others, sticky bit set
+    'ow', # directory writeable to others, sticky bit unset
+]
+
+# Map of GNU foreground color codes to BSD color designations
+GNU_FG_TO_BSD = {
+    30 : 'a', # black
+    31 : 'b', # red
+    32 : 'c', # green
+    33 : 'd', # brown
+    34 : 'e', # blue
+    35 : 'f', # magenta
+    36 : 'g', # cyan
+    37 : 'h', # light grey
+}
+
+# Map of GNU background color codes to BSD color designations
+GNU_BG_TO_BSD = {
+    40 : 'a', # black
+    41 : 'b', # red
+    42 : 'c', # green
+    43 : 'd', # brown
+    44 : 'e', # blue
+    45 : 'f', # magenta
+    46 : 'g', # cyan
+    47 : 'h', # light grey
+}
+
+# GNU code indicating that the foreground color be bold
+GNU_BOLD = 1
+
+def gnu_to_bsd_color(gnu):
+    '''
+    Convert a GNU LS_COLOR value into a BSD LSCOLOR value when possible.
+
+    The BSD formats colors as "<f><b>" where <f> and <b> are letters in [a-h]
+    representing <f>oreground and <b>ackground colors. A foreground color can
+    be made bold by capitalizing its letter. Either <f> or <b> can be set to
+    'x' to use the default color.
+
+    GNU uses a more flexible format based on ANSI escape sequences. But because
+    we're converting to BSD, we must assume a simpler format. Here, we assume
+    the colors are of the form "<c1>;<c2>;<c3>;...;<cn>" where each <cx> is a
+    number in [30-37] (foreground), in [40-47] (background), or equal to 1
+    (bold parameter). We assume later codes override earlier ones and that, if
+    the bold parameter is present anywhere, then the foreground color will be
+    bold (this does not affect the background color).
+
+    When converting to BSD, if there are any problems parsing the GNU colors at
+    all, the return color will be set to the default (i.e., 'xx').
+
+    Example: "34;01;44" means "blue (foreground), bold (foreground), blue
+    (background)", so the returned BSD value will be "Ee".
+
+    Example: "34;35" means "blue (foreground), magenta (foreground)", so the
+    returned value will be "fx".
+    '''
+
+    try:
+        codes = [int(c) for c in gnu.split(';')]
+    except ValueError:
+        codes = []
+
+    bold = False
+    bg, fg = 'x', 'x'
+    for code in codes:
+        if code in GNU_FG_TO_BSD:
+            fg = GNU_FG_TO_BSD[code]
+        elif code in GNU_BG_TO_BSD:
+            bg = GNU_BG_TO_BSD[code]
+        elif code == GNU_BOLD:
+            bold = True
+
+    if bold:
+        fg = fg.upper()
+
+    return fg + bg
+
+def LS_COLORS_to_LSCOLORS(LS_COLORS):
+    '''
+    Takes the value of the GNU LS_COLORS variable and returns a corresponding
+    value for the BSD LSCOLORS variable.
+    '''
+
+    # Parse LS_COLORS into a more manageable dict, ignoring empty entries
+    ls_colors = {}
+    for item in filter(bool, LS_COLORS.split(':')):
+        label, color_code_string = item.split('=')
+        ls_colors[label] = color_code_string
+
+    # Convert to BSD format
+    lscolors = []
+    for label in filter(ls_colors.__contains__, GNU_FILE_LABELS):
+        gnu_color = ls_colors[label]
+        bsd_color = gnu_to_bsd_color(gnu_color)
+        lscolors.append(bsd_color)
+
+    LSCOLORS = ''.join(lscolors)
+    return LSCOLORS
+
+def main():
+    LS_COLORS = os.environ.get('LS_COLORS')
+    LSCOLORS = LS_COLORS_to_LSCOLORS(LS_COLORS)
+    print(LSCOLORS)
+
+if __name__ == '__main__':
+    main()
+

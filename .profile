@@ -65,7 +65,7 @@ fi
 
 if [ -n "$PS1" ] ; then
 
-    # Set up colors for ls
+    # Set up colors for GNU ls
     colors="$HOME/.dir_colors/dircolors.ansi-light"
     if command -v dircolors >/dev/null 2>&1 ; then
         # Set LS_COLORS and alias ls
@@ -76,6 +76,12 @@ if [ -n "$PS1" ] ; then
         # support `--color=auto` (e.g., it's FreeBSD or macOS). Some programs
         # might still use $LS_COLORS, though, so run gdircolors anyway.
         eval "$(gdircolors "$colors")"
+    fi
+
+    # Set up colors for BSD ls
+    if [ -z "$LSCOLORS" -a -n "$LS_COLORS" ] ; then
+        LSCOLORS=$(python "$HOME/.local/bin/gnu_to_bsd_lscolors")
+        export LSCOLORS
     fi
 
 fi
