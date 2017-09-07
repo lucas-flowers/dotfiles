@@ -60,7 +60,7 @@ if [[ -n $PS1 ]] ; then
 
     # Title bar for xterm
     case $TERM in
-        xterm*)
+        screen*|xterm*)
 
             # Sources:
             #   http://www.davidpashley.com/articles/xterm-titles-with-bash/)

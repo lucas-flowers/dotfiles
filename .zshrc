@@ -63,7 +63,7 @@ MODE_INDICATOR="%{$fg_bold[red]%}[NORMAL]%{$reset_color%}"
 
 # Title bar for xterm
 case $TERM in
-    xterm*)
+    screen*|xterm*)
         title_begin='\033]2;'
         title_end='\007'
         precmd() {
