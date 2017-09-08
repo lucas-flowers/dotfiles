@@ -54,6 +54,7 @@ plugins=(git vi-mode)
 # enables the vim normal mode
 export KEYTIMEOUT=1
 
+ZSH_CUSTOM=$HOME/.oh-my-zsh-custom
 source $ZSH/oh-my-zsh.sh
 
 # Prompt
