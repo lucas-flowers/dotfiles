@@ -76,7 +76,7 @@ if [ -n "$PS1" ] ; then
         # support `--color=auto` (e.g., it's FreeBSD or macOS). Some programs
         # might still use $LS_COLORS, though, so run gdircolors anyway.
         eval "$(gdircolors "$colors")"
-        export LSCOLORS=$(python "$HOME/.local/bin/gnu_to_bsd_lscolors")
+        export LSCOLORS=$(python "$HOME/.local/bin/gnu2bsd")
         export CLICOLOR=1
     fi
 
