@@ -82,7 +82,7 @@ def gnu_to_bsd_color(gnu):
     '''
 
     try:
-        codes = [int(c) for c in gnu.split(';')]
+        codes = [int(c) for c in gnu.split(';')] if gnu else []
     except ValueError:
         codes = []
 
@@ -115,8 +115,8 @@ def LS_COLORS_to_LSCOLORS(LS_COLORS):
 
     # Convert to BSD format
     lscolors = []
-    for label in filter(ls_colors.__contains__, GNU_FILE_LABELS):
-        gnu_color = ls_colors[label]
+    for label in GNU_FILE_LABELS:
+        gnu_color = ls_colors.get(label, None)
         bsd_color = gnu_to_bsd_color(gnu_color)
         lscolors.append(bsd_color)
 
