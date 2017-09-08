@@ -1,7 +1,22 @@
+
+# Terminal
+Term=xterm-256color
+CursorType=block
+CursorBlinks=no
+
+# Window's bell is way too annoying for terminal use
+BellType=0
+BellFlash=yes
+
+# Font
+Font=Noto Mono
+FontHeight=13
+BoldAsFont=-1
+
+# Solarized
 ForegroundColour=101,123,131
 BackgroundColour=253,246,227
 CursorColour=220,50,47
-
 Black=7,54,66
 BoldBlack=0,43,54
 Red=220,50,47
@@ -18,9 +33,3 @@ Cyan=42,161,152
 BoldCyan=147,161,161
 White=238,232,213
 BoldWhite=253,246,227
-BoldAsFont=-1
-FontHeight=13
-Font=Noto Mono
-Term=xterm-256color
-CursorType=block
-CursorBlinks=no
