@@ -9,6 +9,12 @@ if has('win32')
 
     set directory=$TEMP " Swap directory is %TEMP%
 
+    if has('gui_running')
+        " pass
+    else
+        colorscheme solarized
+    endif
+
     " Adjust slashses to work with Windows (required for LaTeX-Suite)
     set shellslash
 
