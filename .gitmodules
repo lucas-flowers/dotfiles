@@ -148,3 +148,6 @@
 [submodule ".local/lib/gnu2bsd"]
 	path = .local/lib/gnu2bsd
 	url = https://github.com/lucas-flowers/gnu2bsd
+[submodule ".vim/pack/foo/start/vim-csharp"]
+	path = .vim/pack/foo/start/vim-csharp
+	url = https://github.com/OrangeT/vim-csharp.git
