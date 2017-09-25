@@ -32,7 +32,6 @@ function LineSetting()
     :set linebreak
     :set textwidth=79
     :set colorcolumn=80
-    :set cursorline
     :set nowrap
     let g:short_lines=1
 endfunction
@@ -45,7 +44,6 @@ function NoLineSetting()
     :set linebreak
     :set textwidth=0
     :set colorcolumn=
-    :set nocursorline
     :set wrap
     let g:short_lines=0
 endfunction

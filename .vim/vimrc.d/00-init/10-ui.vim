@@ -6,6 +6,9 @@ set number
 set ruler
 set laststatus=2
 
+" Always highlight current line 
+set cursorline
+
 " Show as much as possible of a wrapped line; don't give up and just replace it
 " with at-signs all over the place.
 set display=lastline
