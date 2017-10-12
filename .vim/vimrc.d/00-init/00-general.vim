@@ -3,6 +3,9 @@
 let mapleader = ","
 noremap \ ,
 
+" Haven't used the local leader until recently; use the actual leader for now
+let maplocalleader = mapleader
+
 " Enable vim features
 set nocompatible
 

@@ -151,3 +151,6 @@
 [submodule ".vim/pack/foo/start/vim-csharp"]
 	path = .vim/pack/foo/start/vim-csharp
 	url = https://github.com/OrangeT/vim-csharp.git
+[submodule ".vim/pack/foo/start/vimtex"]
+	path = .vim/pack/foo/start/vimtex
+	url = https://github.com/lervag/vimtex.git

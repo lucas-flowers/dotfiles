@@ -49,6 +49,8 @@ done
 # Use python3 for new virtual environments
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 
+export TEXMFHOME=~/.texmf
+
 # Python virtualenvwrapper
 export WORKON_HOME=~/.virtualenvs
 # export PROJECT_HOME=~/Devel # I'd rather not set this until I need it

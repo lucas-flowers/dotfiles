@@ -4,8 +4,10 @@ if has('win32')
 
     " PDF viewer
     let defaultstart = ':!start '
-    let defaultpdf = 'SumatraPDF'
     let defaultsuffix = ''
+    if !exists('defaultpdf')
+        let defaultpdf = 'SumatraPDF'
+    endif
 
     set directory=$TEMP " Swap directory is %TEMP%
 
@@ -23,8 +25,10 @@ else
 
     " PDF viewer
     let defaultstart = 'silent !'
-    let defaultpdf = 'sumatrapdf'
     let defaultsuffix = ' &'
+    if !exists('defaultpdf')
+        let defaultpdf = 'sumatrapdf'
+    endif
 
     set directory=$HOME/.vim/swap
 
