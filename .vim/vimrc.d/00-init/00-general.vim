@@ -33,6 +33,10 @@ set smartcase
 " Don't create two spaces when using the `gq` and `J` commands
 set nojoinspaces
 
+" Milliseconds vim waits after typing before updating (i.e., for realtime
+" plugins, etc.)
+set updatetime=250
+
 " Font encoding
 if has("multi_byte")
     if &termencoding == ""
