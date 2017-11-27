@@ -16,3 +16,6 @@ endif
 " Source out the other default settings (in the vimrc folder of this directory)
 runtime! vimrc.d/*/*.vim
 
+" Enable directory-specific vimrc files
+set exrc
+set secure " Security when reading directory-specific files (this should go at the end of ~/.vimrc)
