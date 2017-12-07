@@ -154,3 +154,6 @@
 [submodule ".vim/pack/foo/start/vimtex"]
 	path = .vim/pack/foo/start/vimtex
 	url = https://github.com/lervag/vimtex.git
+[submodule ".vim/pack/foo/start/unicode.vim"]
+	path = .vim/pack/foo/start/unicode.vim
+	url = https://github.com/chrisbra/unicode.vim.git
