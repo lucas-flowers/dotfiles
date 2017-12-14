@@ -22,6 +22,9 @@ nnoremap <Leader>h :call HLToggle()<CR>
 nmap j gj
 nmap k gk
 
+" Make Y/yy consistent with D/dd and C/cc
+noremap Y y$
+
 " Enable/disable spelling
 command S :set spell spelllang=en_us
 command NS :set nospell
