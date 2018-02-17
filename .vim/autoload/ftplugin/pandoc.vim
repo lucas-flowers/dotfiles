@@ -2,20 +2,20 @@
 " Converting files with Pandoc's markdown syntax
 function ftplugin#pandoc#ToPDF()
     " For personal note-taking: Venturis font, 12pt fontsize, 1 inch margins
-    let command = ':w | !pandoc -V geometry:margin=1in -V fontsize=12pt -H $HOME/.pandoc/headers/default.tex -o "%:r.pdf" "%"'
+    let command = ':w | !pandoc --variable urlcolor=cyan --variable linkcolor=cyan -V geometry:margin=1in -V fontsize=12pt -H $HOME/.pandoc/headers/default.tex -o "%:r.pdf" "%"'
     exec command
 endfunction
 
 function ftplugin#pandoc#ToPDFNormalNumbered()
     " For personal note-taking: Venturis font, 12pt fontsize, 1 inch margins,
     " numbered sections, and a table of contents
-    let command = ':w | !pandoc -N --toc -V geometry:margin=1in -V fontsize=12pt -H $HOME/.pandoc/headers/default.tex -o "%:r.pdf" "%"'
+    let command = ':w | !pandoc --variable urlcolor=cyan --variable linkcolor=cyan -N --toc -V geometry:margin=1in -V fontsize=12pt -H $HOME/.pandoc/headers/default.tex -o "%:r.pdf" "%"'
     exec command
 endfunction
 
 function ftplugin#pandoc#ToPDFWithBib()
     " PandocToPDFNormalNumbered, but with a bibliography
-    let command = ':w | !pandoc --filter pandoc-citeproc -N --toc -V geometry:margin=1in -H $HOME/.pandoc/headers/default.tex -o "%:r.pdf" "%"'
+    let command = ':w | !pandoc --variable urlcolor=cyan --variable linkcolor=cyan --filter pandoc-citeproc -N --toc -V geometry:margin=1in -H $HOME/.pandoc/headers/default.tex -o "%:r.pdf" "%"'
     exec command
 endfunction
 
