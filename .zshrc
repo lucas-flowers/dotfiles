@@ -77,6 +77,51 @@ case $TERM in
             printf "${title_begin}${USER}@${HOST}: ${cmd}${title_end}"
         }
         ;;
+    linux)
+
+        # TODO This should probably not be zshrc-specific
+
+        # Standard Solarized color palette
+        S_base03="002b36"
+        S_base02="073642"
+        S_base01="586e75"
+        S_base00="657b83"
+        S_base0="839496"
+        S_base1="93a1a1"
+        S_base2="eee8d5"
+        S_base3="fdf6e3"
+        S_yellow="b58900"
+        S_orange="cb4b16"
+        S_red="dc322f"
+        S_magenta="d33682"
+        S_violet="6c71c4"
+        S_blue="268bd2"
+        S_cyan="2aa198"
+        S_green="859900"
+
+        # Set Solarized
+        echo -en "\e]P0$S_base02"
+        echo -en "\e]P1$S_red"
+        echo -en "\e]P2$S_green"
+        echo -en "\e]P3$S_yellow"
+        echo -en "\e]P4$S_blue"
+        echo -en "\e]P5$S_magenta"
+        echo -en "\e]P6$S_cyan"
+        echo -en "\e]P7$S_base2"
+        echo -en "\e]P8$S_base03"
+        echo -en "\e]P9$S_orange"
+        echo -en "\e]Pa$S_base01"
+        echo -en "\e]Pb$S_base00"
+        echo -en "\e]Pc$S_base0"
+        echo -en "\e]Pd$S_violet"
+        echo -en "\e]Pe$S_base1"
+        echo -en "\e]Pf$S_base3"
+
+        # Invert background and foreground to become Solarized Light
+        # TODO Should *everything* be escape sequences, or should it all be setterm?
+        # TODO Is this *really* Solarized light? I'm pretty sure this command doesn't change the bases
+        setterm --foreground black --background white --store
+
 esac
 
 # If LS_COLORS has been defined (i.e., `dircolors` was run), use those colors
