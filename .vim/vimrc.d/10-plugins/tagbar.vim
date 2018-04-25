@@ -9,6 +9,9 @@
 "##############################################################################
 "##############################################################################
 
+" Do not sort tags alphabetically; use the source code order
+let g:tagbar_sort = 0
+
 " Add support for markdown files in tagbar.
 let g:tagbar_type_pandoc = {
     \ 'ctagstype': 'pandoc',
