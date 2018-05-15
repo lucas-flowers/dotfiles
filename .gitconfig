@@ -4,6 +4,7 @@
     name = Lucas Flowers
     email = 31171608+lucas-flowers@users.noreply.github.com
 [alias]
+    lp = log --full-diff --patch
     l = log --oneline --all --decorate --graph
     d = diff --word-diff
 [grep]
