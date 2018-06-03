@@ -44,6 +44,9 @@ HIST_STAMPS="yyyy-mm-dd"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git vi-mode)
 
+# I'll do updates myself, thanks
+DISABLE_AUTO_UPDATE=true
+
 ###############################################################################
 ###############################################################################
 #### User Configuration                                                    ####
