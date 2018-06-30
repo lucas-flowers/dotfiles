@@ -22,6 +22,12 @@ set tabstop=4
 set shiftwidth=4
 set indentexpr=
 
+" Add all subdirectories recursively to the path, for using with find commands
+set path+=**
+
+" Bring up a tab menu when the find command gets multiple files
+set wildmenu
+
 " Allow special vim settings for individual files (placed near end or beginning
 " of the file)
 set modeline
