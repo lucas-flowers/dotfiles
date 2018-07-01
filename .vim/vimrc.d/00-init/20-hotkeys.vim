@@ -64,14 +64,6 @@ nnoremap <Leader>w :call ToggleShortLines()<Enter>
 " Python as a calculator
 command! -nargs=+ P :r !python -c "from math import *; print(<args>, end = '')"
 
-" Tab navigation like in other programs
-nnoremap <C-S-tab> :tabprevious<CR>
-nnoremap <C-tab>   :tabnext<CR>
-nnoremap <C-t>     :tabnew<CR>
-inoremap <C-S-tab> <Esc>:tabprevious<CR>i
-inoremap <C-tab>   <Esc>:tabnext<CR>i
-inoremap <C-t>     <Esc>:tabnew<CR>
-
 " Remove trailing spaces
 nnoremap <Leader>e :%s/\v\s+$//g<Enter>``
 
