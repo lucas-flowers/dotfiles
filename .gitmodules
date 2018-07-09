@@ -163,3 +163,6 @@
 [submodule ".vim/pack/foo/start/python-syntax"]
 	path = .vim/pack/foo/start/python-syntax
 	url = git@github.com:vim-python/python-syntax.git
+[submodule ".vim/pack/foo/start/vim-gutentags"]
+	path = .vim/pack/foo/start/vim-gutentags
+	url = git@github.com:ludovicchabant/vim-gutentags.git
