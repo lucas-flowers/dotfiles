@@ -3,3 +3,6 @@
 --langmap=bib:.bib
 --regex-bib=/^\@(\w+)[ \t]*\{[ \t]*([^,]+)[ \t]*,/\2 : \1/s,Sources/
 
+# Don't recognize import lines as definitions in Python
+--python-kinds=-i
+
