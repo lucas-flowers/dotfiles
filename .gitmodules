@@ -160,3 +160,6 @@
 [submodule ".vim/pack/foo/start/vim-easy-align"]
 	path = .vim/pack/foo/start/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align.git
+[submodule ".vim/pack/foo/start/python-syntax"]
+	path = .vim/pack/foo/start/python-syntax
+	url = git@github.com:vim-python/python-syntax.git
