@@ -169,3 +169,6 @@
 [submodule ".vim/pack/foo/start/vim-characterize"]
 	path = .vim/pack/foo/start/vim-characterize
 	url = git@github.com:tpope/vim-characterize.git
+[submodule ".vim/pack/foo/start/vim-abolish"]
+	path = .vim/pack/foo/start/vim-abolish
+	url = git@github.com:tpope/vim-abolish.git
