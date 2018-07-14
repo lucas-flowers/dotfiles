@@ -2,3 +2,4 @@
 --langmap=bib:.bib
 --regex-bib=/^\@(\w+)[ \t]*\{[ \t]*([^,]+)[ \t]*,/\2 : \1/s,Sources/
 --python-kinds=-i
+--exclude venv/
