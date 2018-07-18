@@ -159,16 +159,16 @@
 	url = https://github.com/junegunn/vim-easy-align.git
 [submodule ".vim/pack/foo/start/python-syntax"]
 	path = .vim/pack/foo/start/python-syntax
-	url = git@github.com:vim-python/python-syntax.git
+	url = https://github.com/vim-python/python-syntax.git
 [submodule ".vim/pack/foo/start/vim-gutentags"]
 	path = .vim/pack/foo/start/vim-gutentags
-	url = git@github.com:ludovicchabant/vim-gutentags.git
+	url = https://github.com/ludovicchabant/vim-gutentags.git
 [submodule ".vim/pack/foo/start/vim-repeat"]
 	path = .vim/pack/foo/start/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
 [submodule ".vim/pack/foo/start/vim-characterize"]
 	path = .vim/pack/foo/start/vim-characterize
-	url = git@github.com:tpope/vim-characterize.git
+	url = https://github.com/tpope/vim-characterize.git
 [submodule ".vim/pack/foo/start/vim-abolish"]
 	path = .vim/pack/foo/start/vim-abolish
-	url = git@github.com:tpope/vim-abolish.git
+	url = https://github.com/tpope/vim-abolish.git
