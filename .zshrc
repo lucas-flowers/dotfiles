@@ -9,8 +9,10 @@ emulate sh
 source $HOME/.profile
 emulate zsh
 
-# Sometimes (*cough* WSL *cough*) SHELL is still set to bash; fix it
-export SHELL='zsh'
+# Sometimes (*cough* WSL *cough*) SHELL is still set to bash. Also,
+# ~/.ssh/config thinks $SHELL is an absolute path, but the default is just the
+# shell's name. This fixes both issues.
+export SHELL="$(which zsh)"
 
 # Keep only the first insance of any duplicates in $PATH and zsh's path
 typeset -U PATH path
