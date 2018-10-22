@@ -74,12 +74,12 @@ case $TERM in
         precmd() {
             # Show directory by default
             dir="$(print -P '%~')"
-            printf "${title_begin}${USER}@${HOST}: ${dir}${title_end}"
+            echo -n "${title_begin}${USER}@${HOST}: ${dir}${title_end}"
         }
         preexec() {
             # Show the command when a command is run
             cmd="$1"
-            printf "${title_begin}${USER}@${HOST}: ${cmd}${title_end}"
+            echo -n "${title_begin}${USER}@${HOST}: ${cmd}${title_end}"
         }
         ;;
     linux)
