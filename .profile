@@ -46,9 +46,9 @@ done
 ###############################################################################
 ###############################################################################
 
-# Use python3 for new virtual environments
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3 # Use python3 for new virtual environments
+export EDITOR=vim # Duh
 export TEXMFHOME=~/.texmf
 
 # Python virtualenvwrapper
