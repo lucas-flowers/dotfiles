@@ -82,7 +82,7 @@ case $TERM in
             echo -n "${title_begin}${USER}@${HOST}: ${cmd}${title_end}"
         }
         ;;
-    linux)
+    linux*)
 
         # TODO This should probably not be zshrc-specific
 
