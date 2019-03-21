@@ -104,7 +104,34 @@ case $TERM in
         S_cyan="2aa198"
         S_green="859900"
 
-        # Set Solarized
+        # Set Solarized Light
+        #
+        # This is the same as Solarized Dark, except base0X is swapped with
+        # baseX for each X.
+        #
+        # NOTE: The "linux-16color" (and "linux"?) console (is it the console?
+        # or is it specifically another program?) appears to support 8 colors,
+        # plus 8 additional foreground colors by using bold/bright escape
+        # sequences. That is, it *almost* supports 16 colors, except that
+        # background colors are limited to colors 0-7 (and not 8-15). You can
+        # verify this by comparing the output of `tput setab` and `tput setaf`
+        # for different colors; there will be 16 foreground colors, but the
+        # first 8 background colors will be duplicated when printing the last 8.
+        #
+        # Therefore, background colors might not look the same as they would in
+        # a 256-color terminal. For example, solarized's preferred background
+        # and foreground colors are in the range 8-15, so the colors *will* be
+        # set incorrectly and look different (i.e., solarized light's
+        # background should look a shade too light and its foreground will be a
+        # shade too dark).
+        #
+        # HOWEVER, the colors below will all be *set* correctly; if you open
+        # vim (outside tmux), you will find that all 16 colors render
+        # correctly, regardless of whether they are in the foreground or
+        # background.
+        #
+        # I'm not sure whether there is an easy way to fix this color problem.
+        #
         echo -en "\e]P0$S_base02"
         echo -en "\e]P1$S_red"
         echo -en "\e]P2$S_green"
@@ -122,9 +149,10 @@ case $TERM in
         echo -en "\e]Pe$S_base1"
         echo -en "\e]Pf$S_base3"
 
-        # Invert background and foreground to become Solarized Light
-        # TODO Should *everything* be escape sequences, or should it all be setterm?
-        # TODO Is this *really* Solarized light? I'm pretty sure this command doesn't change the bases
+        # Set the foregound to black (color #0) and background to white (color
+        # #7). Unfortunately, solarized's foreground and background colors are
+        # actually in the 8-15 range, which means the foreground and background
+        # colors will be set wrong and look different (see above).
         setterm --foreground black --background white --store
 
 esac

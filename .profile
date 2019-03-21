@@ -82,4 +82,10 @@ if [ -n "$PS1" ] ; then
         export CLICOLOR=1
     fi
 
+    # TODO Workaround for allowing virtual terminals to support 16 colors. This
+    # should really be done when TERM is originall set.
+    if [ "$TERM" = 'linux' ]; then
+        export TERM='linux-16color'
+    fi
+
 fi

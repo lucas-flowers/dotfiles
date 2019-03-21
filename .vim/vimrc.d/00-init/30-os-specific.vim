@@ -29,13 +29,15 @@ else
     set directory=$HOME/.vim/swap
 
     " Remind vim how many colors these terminals support
-    if index(["xterm-256color", "screen-256color", "gnome-terminal"], $TERM) != -1
+    if index(['xterm-256color', 'screen-256color', 'gnome-terminal'], $TERM) != -1
         set t_Co=256
-    else
-        " Surely every terminal I'll ever access has *at least* 16 colors.
-        " Considering solarized needs 16 colors minimum, let's just assume 16
-        " colors for every other terminal. If, somehow, there are exceptions,
-        " handle them here.
+    elseif index(['linux-16color', 'screen'], $TERM) != -1
+        " This assumes that screen's underlying terminal is actually 16 colors
+        " (a mostly reasonable assumption). To use `linux-16color` properly,
+        " change the default TERM from `linux` by editing the appropriate
+        " systemd file or adding TERM=linux-16color to the kernel parameters
+        " (i.e., through grub's GRUB_CMDLINE_LINUX). Google this stuff for
+        " exact details.
         set t_Co=16
     endif
 
