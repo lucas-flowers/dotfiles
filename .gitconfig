@@ -12,3 +12,9 @@
     perl-regexp = true
 [push]
     default = simple
+[rebase]
+	autosquash = true
+[merge]
+    tool = vimdiff
+    conflictstyle = diff3
+    prompt = false
