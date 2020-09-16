@@ -178,3 +178,9 @@
 [submodule ".vim/pack/foo/start/jq.vim"]
 	path = .vim/pack/foo/start/jq.vim
 	url = git@github.com:vito-c/jq.vim.git
+[submodule ".vim/pack/foo/start/diffchar.vim"]
+	path = .vim/pack/foo/start/diffchar.vim
+	url = https://github.com/rickhowe/diffchar.vim.git
+[submodule ".vim/pack/foo/start/Vim-Jinja2-Syntax"]
+	path = .vim/pack/foo/start/Vim-Jinja2-Syntax
+	url = https://github.com/Glench/Vim-Jinja2-Syntax.git
