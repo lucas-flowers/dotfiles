@@ -184,3 +184,6 @@
 [submodule ".vim/pack/foo/start/vim-jinja"]
 	path = .vim/pack/foo/start/vim-jinja
 	url = https://github.com/lepture/vim-jinja.git
+[submodule ".vim/pack/foo/start/vim-graphql"]
+	path = .vim/pack/foo/start/vim-graphql
+	url = https://github.com/jparise/vim-graphql.git
