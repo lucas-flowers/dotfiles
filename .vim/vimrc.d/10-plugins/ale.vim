@@ -11,7 +11,7 @@
 
 " For Java, use eclim
 let g:ale_linters = {
-            \ 'python' : ['pylint'],
+            \ 'python' : ['mypy', 'pylint', 'flake8'],
             \ 'java' : ['javac'],
             \ 'tex' : [],
             \ 'yaml' : ['yamllint'],
@@ -20,9 +20,13 @@ let g:ale_linters = {
             \ 'bash' : ['shellcheck'],
             \}
 
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_fixers = {
+            \ 'python': ['isort'],
+            \}
+
+let g:ale_echo_msg_format = '[%linter%] %s [%code%]'
+
+let g:ale_fix_on_save = 1
 
 " Keep the gutter open so text doesn't keep moving
 let g:ale_sign_column_always = 1
