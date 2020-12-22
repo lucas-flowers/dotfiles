@@ -28,6 +28,9 @@ let g:ale_echo_msg_format = '[%linter%] %s [%code%]'
 
 let g:ale_fix_on_save = 1
 
+" Disable language server capabilities on the assumption we're using coc
+let g:ale_disable_lsp = 1
+
 " Keep the gutter open so text doesn't keep moving
 let g:ale_sign_column_always = 1
 

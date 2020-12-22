@@ -187,3 +187,6 @@
 [submodule ".vim/pack/foo/start/vim-graphql"]
 	path = .vim/pack/foo/start/vim-graphql
 	url = https://github.com/jparise/vim-graphql.git
+[submodule ".vim/pack/foo/start/coc.nvim"]
+	path = .vim/pack/foo/start/coc.nvim
+	url = git@github.com:neoclide/coc.nvim.git
