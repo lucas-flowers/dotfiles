@@ -190,3 +190,6 @@
 [submodule ".vim/pack/foo/start/coc.nvim"]
 	path = .vim/pack/foo/start/coc.nvim
 	url = git@github.com:neoclide/coc.nvim.git
+[submodule ".vim/pack/foo/start/vim-caser"]
+	path = .vim/pack/foo/start/vim-caser
+	url = git@github.com:arthurxavierx/vim-caser.git
