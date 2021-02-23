@@ -13,6 +13,8 @@
     perl-regexp = true
 [push]
     default = simple
+[credential]
+	helper = osxkeychain
 [rebase]
 	autosquash = true
 [merge]
