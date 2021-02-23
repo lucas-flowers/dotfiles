@@ -18,6 +18,7 @@ let g:ale_linters = {
             \ 'cloudformation.yaml': ['yamllint', 'cfn-lint'],
             \ 'sh' : ['shellcheck'],
             \ 'bash' : ['shellcheck'],
+            \ 'rst' : ['rst-lint'],
             \}
 
 let g:ale_fixers = {
