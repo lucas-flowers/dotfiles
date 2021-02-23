@@ -18,3 +18,5 @@
     tool = vimdiff
     conflictstyle = diff3
     prompt = false
+[commit]
+	verbose = true
