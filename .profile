@@ -27,7 +27,7 @@ done
 
 # These paths are likely not to exist, but should go first if they do. They are
 # listed in the reverse order that they'll be in PATH.
-paths_prepend="/snap/bin /usr/local/bin $HOME/.local/bin $HOME/bin"
+paths_prepend="$HOME/Repos/tools $HOME/Library/Python/3.9/bin /snap/bin /usr/local/bin $HOME/.local/bin $HOME/bin"
 for p in $paths_prepend ; do
     case ":$PATH:" in
         *":$p:"*)
