@@ -1,5 +1,6 @@
 [core]
     editor = vim
+    pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
 [user]
     name = Lucas Flowers
     email = 31171608+lucas-flowers@users.noreply.github.com
