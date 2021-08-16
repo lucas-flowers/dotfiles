@@ -145,6 +145,12 @@ if [ -n "$LS_COLORS" ] ; then
     autoload -Uz compinit
 fi
 
+# Fuzzy finder in CTRL-R
+source ~/.fzf.zsh
+
+# Initialize z
+eval "$(zoxide init zsh --cmd cd)"
+
 # Aliases. These aliases will override any that oh-my-zsh libraries, plugins,
 # and themes provide. (Note that oh-my-zsh recommends putting aliases in
 # ZSH_CUSTOM. Maybe put zsh-specific aliases there?)
