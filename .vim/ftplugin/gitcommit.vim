@@ -1,3 +1,3 @@
 
-setlocal formatoptions-=t
+setlocal formatoptions-=n
 
