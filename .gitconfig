@@ -15,10 +15,10 @@
 [push]
     default = simple
 [rebase]
-	autosquash = true
+    autosquash = true
 [merge]
     tool = vimdiff
     conflictstyle = diff3
     prompt = false
 [commit]
-	verbose = true
+    verbose = true
