@@ -151,7 +151,7 @@ if [ -f "$HOME/.fzf.zsh" ]; then
 fi
 
 # Replace cd with zoxide
-if command -v zoxide 2>&1 >/dev/null; then
+if command -v zoxide >/dev/null 2>&1; then
     eval "$(zoxide init zsh --cmd cd)"
 fi
 
