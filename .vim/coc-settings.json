@@ -5,6 +5,13 @@
     "python.analysis.typeCheckingMode": "off",
     "python.analysis.logLevel": "Error",
     "coc.preferences.formatOnSaveFiletypes": ["python"],
-    "coc.preferences.willSaveHandlerTimeout": 1000,
-    "python.formatting.provider": "black"
+    "coc.preferences.willSaveHandlerTimeout": 3000,
+    "python.formatting.provider": "black",
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingImports": "none",
+        "reportUnusedImport": "none",
+        "reportUnusedClass": "none",
+        "reportUnusedFunction": "none",
+        "reportUnusedVariable": "none"
+    }
 }
