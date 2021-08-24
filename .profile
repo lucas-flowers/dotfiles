@@ -47,17 +47,8 @@ done
 ###############################################################################
 
 
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3 # Use python3 for new virtual environments
 export EDITOR=vim # Duh
 export TEXMFHOME=~/.texmf
-
-# Python virtualenvwrapper
-export WORKON_HOME=~/.virtualenvs
-# export PROJECT_HOME=~/Devel # I'd rather not set this until I need it
-VIRTUALENVWRAPPER_SH=/usr/local/bin/virtualenvwrapper.sh
-if [ -f $VIRTUALENVWRAPPER_SH ]; then
-    source $VIRTUALENVWRAPPER_SH
-fi
 
 # Set up pyenv if it exists
 if [ -d "$HOME/.pyenv" ]; then
