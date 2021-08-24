@@ -67,6 +67,11 @@ if [ -d "$HOME/.pyenv" ]; then
     eval "$(pyenv init -)"
 fi
 
+# Set up poetry if it exists
+if [ -d "$HOME/.poetry" ]; then
+    export PATH="$HOME/.poetry/bin:$PATH"
+fi
+
 ###############################################################################
 ###############################################################################
 #### Interactive Shells                                                    ####
