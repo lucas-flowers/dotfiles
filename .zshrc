@@ -146,10 +146,14 @@ if [ -n "$LS_COLORS" ] ; then
 fi
 
 # Fuzzy finder in CTRL-R
-source ~/.fzf.zsh
+if [ -f "$HOME/.fzf.zsh" ]; then
+    source ~/.fzf.zsh
+fi
 
-# Initialize z
-eval "$(zoxide init zsh --cmd cd)"
+# Replace cd with zoxide
+if command -v zoxide 2>&1 >/dev/null; then
+    eval "$(zoxide init zsh --cmd cd)"
+fi
 
 # Aliases. These aliases will override any that oh-my-zsh libraries, plugins,
 # and themes provide. (Note that oh-my-zsh recommends putting aliases in
