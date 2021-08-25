@@ -15,6 +15,16 @@ let NERDTreeShowHidden=1
 " Make NERDTree always appear on the *right* side
 let g:NERDTreeWinPos="right"
 
+let NERDTreeIgnore = [
+            \ "__pycache__",
+            \ ".mypy_cache",
+            \ ".pytest_cache",
+            \ ".hypothesis",
+            \ ".coverage",
+            \ "tags",
+            \ "tags.lock",
+            \ ]
+
 "##############################################################################
 "##############################################################################
 "## HOTKEYS                                                               #####
