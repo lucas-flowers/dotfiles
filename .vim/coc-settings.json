@@ -14,5 +14,6 @@
         "reportUnusedClass": "none",
         "reportUnusedFunction": "none",
         "reportUnusedVariable": "none"
-    }
+    },
+    "diagnostic.showUnused": false
 }
