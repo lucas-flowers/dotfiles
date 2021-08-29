@@ -1,5 +1,5 @@
 {
-    "diagnostic.displayByAle": false,
+    "diagnostic.displayByAle": true,
     "python.analysis.diagnosticMode": "workspace",
     "python.linting.enabled": false,
     "python.analysis.typeCheckingMode": "off",
