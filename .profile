@@ -63,6 +63,11 @@ if [ -d "$HOME/.poetry" ]; then
     export PATH="$HOME/.poetry/bin:$PATH"
 fi
 
+# Set up cargo bin folder if it exists
+if [ -d "$HOME/.cargo/bin" ]; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
 ###############################################################################
 ###############################################################################
 #### Interactive Shells                                                    ####
