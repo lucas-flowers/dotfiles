@@ -20,7 +20,9 @@ set background=light
 
 " Mouse
 set mouse=a " Mouse support in terminals
-set ttymouse=xterm2 " Mouse support inside tmux
+if !has('nvim') " Mouse support inside tmux
+  set ttymouse=xterm2
+endif
 
 " Make the backspace key work as expected
 set backspace=2
