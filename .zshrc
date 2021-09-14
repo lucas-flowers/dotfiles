@@ -55,9 +55,6 @@ DISABLE_AUTO_UPDATE=true
 ###############################################################################
 ###############################################################################
 
-# Use the correct editor
-export EDITOR=vim
-
 # Removes an annoying delay (default: 4=0.4 seconds) before pressing <ESC>
 # enables the vim normal mode
 export KEYTIMEOUT=1

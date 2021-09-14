@@ -47,7 +47,6 @@ done
 ###############################################################################
 
 
-export EDITOR=vim # Duh
 export TEXMFHOME=~/.texmf
 
 # Set up pyenv if it exists
@@ -66,6 +65,16 @@ fi
 # Set up cargo bin folder if it exists
 if [ -d "$HOME/.cargo/bin" ]; then
     export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+# Use one of the correct editors
+if command -v nvim >/dev/null 2>&1; then
+    export EDITOR=nvim
+    alias vim=nvim
+elif command -v vim >/dev/null 2>&1; then
+    export EDITOR=vim
+else
+    export EDITOR=vi
 fi
 
 ###############################################################################
