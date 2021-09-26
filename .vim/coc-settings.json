@@ -6,7 +6,11 @@
     "python.analysis.logLevel": "Error",
     "coc.preferences.formatOnSaveFiletypes": ["python"],
     "coc.preferences.willSaveHandlerTimeout": 3000,
-    "python.formatting.provider": "black",
+    "python.formatting.provider": "blackd",
+    "python.formatting.blackdHTTPHeaders": {
+        "X-Fast-Or-Safe": "fast",
+        "X-Line-Length": 120
+    },
     "pyright.disableDiagnostics": true,
     "python.analysis.diagnosticSeverityOverrides": {
         "reportMissingImports": "none",
