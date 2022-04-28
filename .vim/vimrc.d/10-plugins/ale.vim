@@ -11,7 +11,7 @@
 
 " For Java, use eclim
 let g:ale_linters = {
-            \ 'python' : ['mypy', 'pylint', 'flake8'],
+            \ 'python' : ['mypy', 'pylint', 'flake8', 'bandit'],
             \ 'java' : ['javac'],
             \ 'tex' : [],
             \ 'yaml' : ['yamllint'],
@@ -37,6 +37,8 @@ let g:ale_sign_column_always = 1
 
 " Use quickfix instead of loclist
 " let g:ale_set_quickfix = 1
+
+let g:ale_python_bandit_use_config = 1
 
 "##############################################################################
 "##############################################################################
