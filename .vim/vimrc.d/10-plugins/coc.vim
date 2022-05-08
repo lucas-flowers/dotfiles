@@ -10,6 +10,9 @@
 
 " NOTE: Run `:CocConfig` in vim to get the real settings for coc.nvim
 
+" Run format after save (avoids the timeout)
+au BufWrite *.py call CocAction('format')
+
 "##############################################################################
 "##############################################################################
 "## HOTKEYS                                                               #####
