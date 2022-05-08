@@ -149,7 +149,18 @@ fi
 
 # Fuzzy finder in CTRL-R
 if [ -f "$HOME/.fzf.zsh" ]; then
+    # macOS
     source ~/.fzf.zsh
+else
+    # Linux (works on Ubuntu)
+    FZF_KEY_BINDINGS=/usr/share/doc/fzf/examples/key-bindings.zsh
+    if [ -f "$FZF_KEY_BINDINGS" ]; then
+        source "$FZF_KEY_BINDINGS"
+    fi
+    FZF_COMPLETION=/usr/share/doc/fzf/examples/completion.zsh
+    if [ -f "$FZF_COMPLETION" ]; then
+        source "$FZF_COMPLETION"
+    fi
 fi
 
 # Replace cd with zoxide
