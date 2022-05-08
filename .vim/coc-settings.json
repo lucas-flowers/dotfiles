@@ -16,5 +16,6 @@
         "reportUnusedFunction": "none",
         "reportUnusedVariable": "none"
     },
-    "diagnostic.showUnused": false
+    "diagnostic.showUnused": false,
+    "outline.sortBy": "position"
 }
