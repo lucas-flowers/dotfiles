@@ -15,6 +15,7 @@ let g:ale_linters = {
             \ 'java' : ['javac'],
             \ 'tex' : [],
             \ 'yaml' : ['yamllint'],
+            \ 'yaml.ansible': ['ansible-lint'],
             \ 'cloudformation.yaml': ['yamllint', 'cfn-lint'],
             \ 'sh' : ['shellcheck'],
             \ 'bash' : ['shellcheck'],
