@@ -193,3 +193,6 @@
 [submodule ".vim/pack/foo/start/vim-caser"]
 	path = .vim/pack/foo/start/vim-caser
 	url = git@github.com:arthurxavierx/vim-caser.git
+[submodule ".vim/pack/foo/start/vim-terraform"]
+	path = .vim/pack/foo/start/vim-terraform
+	url = https://github.com/hashivim/vim-terraform
