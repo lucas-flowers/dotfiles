@@ -1,4 +1,7 @@
 
+-- TODO Make this a little more organized; right now it's a bunch of copypaste
+-- cargoculted unstructured code blocks
+
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
