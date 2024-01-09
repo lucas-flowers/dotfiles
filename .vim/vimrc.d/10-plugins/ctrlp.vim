@@ -10,6 +10,9 @@
 " current working directory. Doing it this way is mainly due to monorepos. 
 let g:ctrlp_working_path_mode=0
 
+" Keep track of unlimited files. Also due to monorepos.
+let g:ctrlp_max_files=0
+
 "##############################################################################
 "##############################################################################
 "## HOTKEYS                                                               #####
