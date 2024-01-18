@@ -7,9 +7,22 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- Setup language servers.
 local lspconfig = require('lspconfig')
-lspconfig.tsserver.setup({
-})
+require("typescript-tools").setup {
+    on_attach = function(client, bufnr)
+        -- The provided highlighting is bad
+        client.server_capabilities.semanticTokensProvider = nil
+    end,
+    capabilities = capabilities,
+    settings = {
+        -- don't spawn a separate diagnostic server (to save memory)
+        separate_diagnostic_server = false,
+        -- this value is passed to: https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-megabytes
+        -- memory limit in megabytes or "auto" (an unspecified high limit)
+        tsserver_max_memory = 24576,
+    },
+}
 lspconfig.gopls.setup({
+    capabilities = capabilities,
     settings = {
         gopls = {
             gofumpt = true,
@@ -18,6 +31,7 @@ lspconfig.gopls.setup({
 })
 lspconfig.lua_ls.setup({
     -- Currently set up for nvim lua specifically, not lua in general
+    capabilities = capabilities,
     settings = {
         Lua = {
             runtime = {
@@ -39,18 +53,7 @@ lspconfig.lua_ls.setup({
 })
 
 
--- Enable some language servers with the additional completion capabilities offered by nvim-cmp
--- TODO Autogenerate this list
-local servers = {
-    'tsserver',
-    'gopls',
-    'lua_ls',
-}
-for _, lsp in ipairs(servers) do
-    lspconfig[lsp].setup {
-        capabilities = capabilities,
-    }
-end
+require('fidget').setup {}
 
 local luasnip = require('luasnip')
 
