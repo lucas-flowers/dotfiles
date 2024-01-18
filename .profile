@@ -73,6 +73,12 @@ if [ -d "$HOME/.nvm" ]; then
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 fi
 
+# Set up volta if it exists
+if [ -d "$HOME/.volta" ]; then
+    export VOLTA_HOME="$HOME/.volta"
+    export PATH="$VOLTA_HOME/bin:$PATH"
+fi
+
 # Use one of the correct editors
 if command -v nvim >/dev/null 2>&1; then
     export EDITOR=nvim
