@@ -62,9 +62,9 @@ if [ -d "$HOME/.poetry" ]; then
     export PATH="$HOME/.poetry/bin:$PATH"
 fi
 
-# Set up cargo bin folder if it exists
-if [ -d "$HOME/.cargo/bin" ]; then
-    export PATH="$HOME/.cargo/bin:$PATH"
+# Set up cargo environment if available
+if [ -d "$HOME/.cargo/env" ]; then
+    . "$HOME/.cargo/env"
 fi
 
 # Set up nvm if it exists
