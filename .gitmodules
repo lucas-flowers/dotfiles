@@ -205,3 +205,18 @@
 [submodule ".vim/pack/foo/start/fidget.nvim"]
 	path = .vim/pack/foo/start/fidget.nvim
 	url = git@github.com:j-hui/fidget.nvim.git
+[submodule ".vim/pack/foo/start/null-ls.nvim"]
+	path = .vim/pack/foo/start/null-ls.nvim
+	url = git@github.com:jose-elias-alvarez/null-ls.nvim.git
+[submodule ".vim/pack/foo/start/prettier.nvim"]
+	path = .vim/pack/foo/start/prettier.nvim
+	url = git@github.com:MunifTanjim/prettier.nvim.git
+[submodule ".vim/pack/foo/start/nvim-treesitter"]
+	path = .vim/pack/foo/start/nvim-treesitter
+	url = git@github.com:nvim-treesitter/nvim-treesitter.git
+[submodule ".vim/pack/foo/start/nvim-jdtls"]
+	path = .vim/pack/foo/start/nvim-jdtls
+	url = https://github.com/mfussenegger/nvim-jdtls.git
+[submodule ".vim/pack/foo/start/vim-jsonnet"]
+	path = .vim/pack/foo/start/vim-jsonnet
+	url = git@github.com:google/vim-jsonnet.git
