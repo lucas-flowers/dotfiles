@@ -12,7 +12,7 @@
 # These should already be in PATH, but add them to the end if they exist, just
 # in case. (Example: /sbin and /usr/sbin are not automatically included in
 # macOS.)
-paths_append="/usr/local/sbin /usr/bin /bin /sbin /usr/sbin /usr/bin/X11 /usr/games /usr/local/games"
+paths_append="/usr/local/sbin /usr/bin /bin /sbin /usr/sbin /usr/bin/X11 /usr/games /usr/local/games /opt/homebrew/bin"
 for p in $paths_append ; do
     case ":$PATH:" in
         *":$p:"*)
@@ -71,6 +71,12 @@ fi
 if [ -d "$HOME/.nvm" ]; then
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+fi
+
+# Set up volta if it exists
+if [ -d "$HOME/.volta" ]; then
+    export VOLTA_HOME="$HOME/.volta"
+    export PATH="$VOLTA_HOME/bin:$PATH"
 fi
 
 # Use one of the correct editors

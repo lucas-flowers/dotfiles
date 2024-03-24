@@ -1,7 +1,4 @@
-" Taglist
-"
-" View structure of programming files.
-"
+" Ctrl-P search plugin
 
 "##############################################################################
 "##############################################################################
@@ -9,15 +6,16 @@
 "##############################################################################
 "##############################################################################
 
-" Using the right-side window is less intrusive
-let Tlist_Use_Right_Window = 1
+" Do not start searches from the project repository root; start from the
+" current working directory. Doing it this way is mainly due to monorepos. 
+let g:ctrlp_working_path_mode=0
+
+" Keep track of unlimited files. Also due to monorepos.
+let g:ctrlp_max_files=0
 
 "##############################################################################
 "##############################################################################
 "## HOTKEYS                                                               #####
 "##############################################################################
 "##############################################################################
-
-" Toggle taglist on command
-nnoremap <Leader>g :TlistToggle<CR>
 

@@ -21,8 +21,6 @@ let NERDTreeIgnore = [
             \ ".pytest_cache",
             \ ".hypothesis",
             \ ".coverage",
-            \ "tags",
-            \ "tags.lock",
             \ ]
 
 "##############################################################################
