@@ -4,13 +4,74 @@
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+-- SET UP LANGUAGE SERVERS
+-------------------------------------------------------------------------------
 
--- Setup language servers.
+-- Shows loading progress for language servers
+require('fidget').setup {}
+
 local lspconfig = require('lspconfig')
+
+local null_ls = require("null-ls")
+
+local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false })
+local event = "BufWritePre" -- or "BufWritePost"
+local async = event == "BufWritePost"
+
+null_ls.setup({
+    on_attach = function(client, bufnr)
+        if client.supports_method("textDocument/formatting") then
+            vim.keymap.set("n", "<Leader>f", function()
+                vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
+            end, { buffer = bufnr, desc = "[lsp] format" })
+
+            -- format on save
+            vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
+            vim.api.nvim_create_autocmd(event, {
+                buffer = bufnr,
+                group = group,
+                callback = function()
+                    vim.lsp.buf.format({ bufnr = bufnr, async = async })
+                end,
+                desc = "[lsp] format on save",
+            })
+        end
+
+        if client.supports_method("textDocument/rangeFormatting") then
+            vim.keymap.set("x", "<Leader>f", function()
+                vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
+            end, { buffer = bufnr, desc = "[lsp] format" })
+        end
+    end,
+})
+
+
+require('prettier').setup({
+    bin = 'prettierd', -- or `'prettierd'` (v0.23.3+)
+    filetypes = {
+        "css",
+        "graphql",
+        "html",
+        "javascript",
+        "javascriptreact",
+        "json",
+        "less",
+        "markdown",
+        "scss",
+        "typescript",
+        "typescriptreact",
+        "yaml",
+    },
+})
+
+
+
 require("typescript-tools").setup {
     on_attach = function(client, bufnr)
         -- The provided highlighting is bad
-        client.server_capabilities.semanticTokensProvider = nil
+        client.server_capabilities.semanticTokensProvider          = nil
+        client.server_capabilities.documentFormattingProvider      = false
+        client.server_capabilities.documentRangeFormattingProvider = false
     end,
     capabilities = capabilities,
     settings = {
@@ -26,9 +87,25 @@ lspconfig.gopls.setup({
     settings = {
         gopls = {
             gofumpt = true,
+            ["ui.completion.usePlaceholders"] = true,
         },
     },
 })
+local configs = require 'lspconfig/configs'
+if not configs.golangcilsp then
+    configs.golangcilsp = {
+        default_config = {
+            cmd = { 'golangci-lint-langserver' },
+            root_dir = lspconfig.util.root_pattern('.git', 'go.mod'),
+            init_options = {
+                command = { "golangci-lint", "run", "--enable-all", "--disable", "lll", "--out-format", "json", "--issues-exit-code=1" },
+            }
+        },
+    }
+end
+lspconfig.golangci_lint_ls.setup {
+    filetypes = { 'go', 'gomod' }
+}
 lspconfig.lua_ls.setup({
     -- Currently set up for nvim lua specifically, not lua in general
     capabilities = capabilities,
@@ -52,9 +129,34 @@ lspconfig.lua_ls.setup({
     },
 })
 
+require 'lspconfig'.starlark_rust.setup {}
 
-require('fidget').setup {}
+require 'lspconfig'.jsonnet_ls.setup {}
 
+-- Treesitter
+-------------------------------------------------------------------------------
+
+require 'nvim-treesitter.configs'.setup {
+    highlight = {
+        enable = true,
+        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+        -- Using this option may slow down your editor, and you may see some duplicate highlights.
+        -- Instead of true it can also be a list of languages
+        additional_vim_regex_highlighting = false,
+    },
+}
+
+-- "Identifier" makes almost everything blue because almost everything is a
+-- variable. Just leave it as uncolored.
+vim.api.nvim_set_hl(0, "@variable", { link = "" })
+vim.api.nvim_set_hl(0, "@property", { link = "" })
+
+
+-- Keymappings
+-------------------------------------------------------------------------------
+
+-- Required for cmp?
 local luasnip = require('luasnip')
 
 -- nvim-cmp setup
@@ -135,5 +237,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
+-- Autoformatting
+-------------------------------------------------------------------------------
+
 -- Automatically format on save
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
+vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.code_action({ source = { organizeImports = true } })]]
