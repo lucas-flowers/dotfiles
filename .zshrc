@@ -52,7 +52,7 @@ setopt EXTENDED_HISTORY
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode)
+plugins=(git vi-mode fzf-tab)
 
 # I'll do updates myself, thanks
 DISABLE_AUTO_UPDATE=true
