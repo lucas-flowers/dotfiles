@@ -129,6 +129,14 @@ lspconfig.lua_ls.setup({
     },
 })
 
+require 'lspconfig'.terraformls.setup {}
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+    pattern = { "*.tf", "*.tfvars" },
+    callback = function()
+        vim.lsp.buf.format()
+    end,
+})
+
 require 'lspconfig'.starlark_rust.setup {}
 
 require 'lspconfig'.jsonnet_ls.setup {}
