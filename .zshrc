@@ -40,8 +40,9 @@ COMPLETION_WAITING_DOTS="true"
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="yyyy-mm-dd"
 
-export HISTFILESIZE=1000000000  # Limit on history file size
+# export HISTFILESIZE=1000000000  # Limit on history file size # Ope this is for bash
 export HISTSIZE=1000000000 # Limit on number of historical commands stored in memory
+export SAVEHIST=$HISTSIZE # Limit on history file size
 setopt HIST_FIND_NO_DUPS # Do not show duplicates when searching history
 setopt INC_APPEND_HISTORY # Append to history immediately, not after shell exit
 setopt EXTENDED_HISTORY
