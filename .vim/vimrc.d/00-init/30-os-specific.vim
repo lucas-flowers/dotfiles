@@ -11,8 +11,6 @@ if has('win32')
 
     set directory=$TEMP " Swap directory is %TEMP%
 
-    colorscheme solarized
-
     " Adjust slashes to work with Windows
     set shellslash
 
@@ -38,8 +36,6 @@ else
         " handle them here.
         set t_Co=16
     endif
-
-    colorscheme solarized
 
     if has('gui_running')
         set mousemodel=popup " For right-click menus
