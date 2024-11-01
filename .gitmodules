@@ -54,7 +54,7 @@
 	url = git@github.com:alvan/vim-closetag.git
 [submodule ".vim/pack/foo/start/vim-colors-solarized"]
 	path = .vim/pack/foo/start/vim-colors-solarized
-	url = git@github.com:altercation/vim-colors-solarized.git
+	url = https://github.com/altercation/vim-colors-solarized.git
 [submodule ".vim/pack/foo/start/vim-commentary"]
 	path = .vim/pack/foo/start/vim-commentary
 	url = git@github.com:tpope/vim-commentary.git
