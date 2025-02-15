@@ -223,3 +223,6 @@
 [submodule ".vim/pack/foo/start/vim-jsonnet"]
 	path = .vim/pack/foo/start/vim-jsonnet
 	url = git@github.com:google/vim-jsonnet.git
+[submodule ".oh-my-zsh-custom/plugins/fzf-tab"]
+	path = .oh-my-zsh-custom/plugins/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab
