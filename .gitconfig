@@ -18,6 +18,8 @@
     default = simple
 [rebase]
     autosquash = true
+    autostash = true
+    updaterefs = true
 [merge]
     tool = vimdiff
     conflictstyle = diff3
@@ -25,4 +27,28 @@
 [commit]
     verbose = true
 [init]
-	defaultBranch = main
+    defaultBranch = main
+[machete]
+    # Kept having a hard time detecting squashes with `simple`
+    squashMergeDetection = exact
+[column]
+    ui = auto # Multicolumn outputs for better screen usage (like for git status, etc.)
+[branch]
+    sort = -committerdate
+[tag]
+    sort = version:refname # Sort tags as version numbers
+[diff]
+    algorithm = histogram # Better than the current default
+    colorMoved = plain # Diffs show moves as moves
+    renames = true
+    mnemonicPrefix = true # "a" and "b" in diffs are replaced with mnemonics (Index, Working dir, and Commit)
+[fetch]
+    # These settings keep things more in sync with the remote
+    prune = true
+    # pruneTags = true
+    all = true
+[rerere]
+    enabled = true
+    autoupdate = true
+
+
