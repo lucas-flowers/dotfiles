@@ -7,7 +7,7 @@
     email = 31171608+lucas-flowers@users.noreply.github.com
 [alias]
     lp = log --full-diff --patch
-    l = log --oneline --decorate --graph
+    l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
     d = diff --word-diff
     root = rev-parse --show-toplevel
     wip = for-each-ref --sort='authordate:iso8601' --format=' %(color:green)%(authordate:relative)%09%(color:white)%(refname:short)' refs/heads
