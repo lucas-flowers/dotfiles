@@ -183,3 +183,8 @@ fi
 # and themes provide. (Note that oh-my-zsh recommends putting aliases in
 # ZSH_CUSTOM. Maybe put zsh-specific aliases there?)
 source ~/.bash_aliases
+
+# Local configuration
+if [ -f "$HOME/.local.zshrc" ]; then
+    source "$HOME/.local.zshrc"
+fi
