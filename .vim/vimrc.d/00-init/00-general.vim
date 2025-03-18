@@ -54,3 +54,5 @@ if has("multi_byte")
     set fileencodings=ucs-bom,utf-8,latin1
 endif
 
+" It's time to let go of the traditional clipboard
+set clipboard+=unnamedplus
