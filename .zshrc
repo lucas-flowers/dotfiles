@@ -40,13 +40,20 @@ COMPLETION_WAITING_DOTS="true"
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="yyyy-mm-dd"
 
-# export HISTFILESIZE=1000000000  # Limit on history file size # Ope this is for bash
+# Hail-mary paranoid attempt to make sure I never lose zsh history unintentionally
+export HISTFILE=~/.my_zsh_history # Avoid possible mixups with programs writing to the default history file
+export HISTFILESIZE=1000000000  # Limit on history file size (ope this is for bash but I'm keeping it)
 export HISTSIZE=1000000000 # Limit on number of historical commands stored in memory
 export SAVEHIST=$HISTSIZE # Limit on history file size
 setopt HIST_FIND_NO_DUPS # Do not show duplicates when searching history
 setopt INC_APPEND_HISTORY # Append to history immediately, not after shell exit
 setopt EXTENDED_HISTORY
-
+setopt appendhistory
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+if [ "$(printf -- '%d' "$(wc -c -- <"$HISTFILE")")" -lt 4000 ]; then
+    echo "History file was truncated."
+fi
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
