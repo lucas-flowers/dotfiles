@@ -136,6 +136,18 @@ vim.opt.rtp:prepend(lazypath)
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
 
+-- TODO Consider or drop:
+--
+-- preexisting plugins in old vim lua/config folder
+-- ctrlp
+-- nerdtree
+-- undotree
+-- vimtex
+-- various other language-specific plugins:
+--    golang
+--    python
+--    typescript
+
 --  To check the current status of your plugins, run
 --    :Lazy
 --
@@ -147,8 +159,9 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 
 require('lazy').setup({
-  -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+
+  -- Detect tabstop and shiftwidth automatically
+  'tpope/vim-sleuth',
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -184,19 +197,6 @@ require('lazy').setup({
       },
     },
   },
-
-  -- {
-  'shaunsingh/solarized.nvim',
-  -- lazy = false,
-  -- priority = 1000,
-  -- opts = {},
-  -- config = function(_, opts)
-  --   vim.o.termguicolors = true
-  --   vim.o.background = 'light'
-  --   require('solarized').setup(opts)
-  --   vim.cmd.colorscheme 'solarized'
-  -- end,
-  -- },
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
@@ -817,25 +817,23 @@ require('lazy').setup({
     end,
   },
 
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
+  {
+    -- To change colorscheme, change these places:
     --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
+    --  * GitHub path
+    --  * The require statement target, and its plugin-specific options
+    --  * The colorscheme command target
+    --
+    -- `:Telescope colorscheme` for available colorschemes
+    'maxmx03/solarized.nvim',
+    priority = 1000, -- Load before all other start plugins
     config = function()
+      vim.o.background = 'light'
       ---@diagnostic disable-next-line: missing-fields
-      require('tokyonight').setup {
-        styles = {
-          comments = { italic = false }, -- Disable italics in comments
-        },
+      require('solarized').setup {
+        variant = 'winter',
       }
-
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme 'solarized'
     end,
   },
 
