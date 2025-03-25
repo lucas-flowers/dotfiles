@@ -26,10 +26,10 @@ vim.schedule(function()
   vim.opt.clipboard = 'unnamedplus'
 end)
 
--- Enable break indent
+-- Break indent
 vim.opt.breakindent = true
 
--- Save undo history
+-- Undo history
 vim.opt.undofile = true
 
 -- Searches are case-insensitive *except* when there is an uppercase letter
@@ -49,9 +49,7 @@ vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
+-- Display specific whitespace characters
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
@@ -66,44 +64,44 @@ vim.opt.scrolloff = 10
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
--- See `:help 'confirm'`
 vim.opt.confirm = true
 
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
+-- TODO Short lines from old vim?
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+--- Basic Keymaps                                                           ---
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 -- Clear highlights on search when pressing <Esc> in normal mode
---  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+-- Very magic search patterns by default
+vim.keymap.set({ 'n', 'v' }, '/', '/\\v', { noremap = true })
+vim.keymap.set({ 'n', 'v' }, '?', '?\\v', { noremap = true })
+
+-- Shortcut for substitution
+vim.keymap.set({ 'n', 'v' }, 's', ':s/\\v', { noremap = true })
+vim.keymap.set({ 'n', 'v' }, 'S', ':%s/\\v', { noremap = true })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
---
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+-- Make j/k move by display lines, not logical lines
+vim.keymap.set({ 'n', 'v' }, 'j', 'gj')
+vim.keymap.set({ 'n', 'v' }, 'k', 'gk')
 
--- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+vim.keymap.set({ 'n' }, '<leader>e', ':%s/\\v\\s+$//g<Enter>``', {
+  noremap = true,
+  desc = 'Remove trailing spac[e]s',
+})
 
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---
---  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+--- Basic Autocommands                                                      ---
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
@@ -116,8 +114,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- [[ Install `lazy.nvim` plugin manager ]]
---    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+--- Plugin Manager                                                          ---
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
@@ -128,8 +130,12 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
--- [[ Configure and install plugins ]]
---
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+--- Plugins                                                                 ---
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
 --  To check the current status of your plugins, run
 --    :Lazy
 --
@@ -139,6 +145,7 @@ vim.opt.rtp:prepend(lazypath)
 --    :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
+
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
@@ -177,6 +184,19 @@ require('lazy').setup({
       },
     },
   },
+
+  -- {
+  'shaunsingh/solarized.nvim',
+  -- lazy = false,
+  -- priority = 1000,
+  -- opts = {},
+  -- config = function(_, opts)
+  --   vim.o.termguicolors = true
+  --   vim.o.background = 'light'
+  --   require('solarized').setup(opts)
+  --   vim.cmd.colorscheme 'solarized'
+  -- end,
+  -- },
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
