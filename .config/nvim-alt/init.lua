@@ -838,9 +838,16 @@ require('lazy').setup({
     priority = 1000, -- Load before all other start plugins
     config = function()
       vim.o.background = 'light'
+
       ---@diagnostic disable-next-line: missing-fields
       require('solarized').setup {
         variant = 'winter',
+        styles = {
+          variables = {
+            -- Variables are super common so I don't think they should be highlighted
+            fg = '#657B83',
+          },
+        },
       }
       vim.cmd.colorscheme 'solarized'
     end,
