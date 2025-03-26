@@ -49,6 +49,25 @@ null_ls.setup({
     },
 })
 
+require'lspconfig'.basedpyright.setup{}
+
+-- lspconfig.pyright.setup({
+--     ["python.analysis.diagnosticMode"] = "workspace",
+--     ["python.linting.enabled"] = false,
+--     ["python.analysis.typeCheckingMode"] = "off",
+--     ["python.analysis.logLevel"] = "Error",
+--     -- ["python.formatting.provider"] = "black",
+--     -- ["python.formatting.blackArgs"] = ["--fast"],
+--     ["pyright.disableDiagnostics"] = true,
+--     ["python.analysis.diagnosticSeverityOverrides"] = {
+--         ["reportMissingImports"] = "none",
+--         ["reportUnusedImport"] = "none",
+--         ["reportUnusedClass"] = "none",
+--         ["reportUnusedFunction"] = "none",
+--         ["reportUnusedVariable"] = "none",
+--         ["reportIncompatibleMethodOverride"] = "none"
+--     },
+-- })
 
 require('prettier').setup({
     bin = 'prettierd', -- or `'prettierd'` (v0.23.3+)
@@ -265,4 +284,4 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- Automatically format on save
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
-vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.code_action({ source = { organizeImports = true } })]]
+-- vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.code_action({ source = { organizeImports = true } })]]
