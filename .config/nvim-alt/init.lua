@@ -82,8 +82,8 @@ vim.keymap.set({ 'n', 'v' }, '/', '/\\v', { noremap = true })
 vim.keymap.set({ 'n', 'v' }, '?', '?\\v', { noremap = true })
 
 -- Shortcut for substitution
-vim.keymap.set({ 'n', 'v' }, 's', ':s/\\v', { noremap = true })
-vim.keymap.set({ 'n', 'v' }, 'S', ':%s/\\v', { noremap = true })
+vim.keymap.set({ 'n', 'v' }, '<leader>s', ':s/\\v', { noremap = true })
+vim.keymap.set({ 'n', 'v' }, '<leader>S', ':%s/\\v', { noremap = true })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
