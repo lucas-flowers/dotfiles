@@ -577,14 +577,32 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
+
         gopls = {
           gofumpt = true,
           ['ui.completion.usePlaceholders'] = true,
           ['completeUnimported'] = true,
           ['deepCompletion'] = true,
         },
-        -- pyright = {},
+
+        basedpyright = {
+          ['python.analysis.diagnosticMode'] = 'workspace',
+          ['python.linting.enabled'] = false,
+          ['python.analysis.typeCheckingMode'] = 'off',
+          ['python.analysis.logLevel'] = 'Error',
+          -- ["python.formatting.provider"] = "black",
+          -- ["python.formatting.blackArgs"] = ["--fast"],
+          ['pyright.disableDiagnostics'] = true,
+          ['python.analysis.diagnosticSeverityOverrides'] = {
+            ['reportMissingImports'] = 'none',
+            ['reportUnusedImport'] = 'none',
+            ['reportUnusedClass'] = 'none',
+            ['reportUnusedFunction'] = 'none',
+            ['reportUnusedVariable'] = 'none',
+            ['reportIncompatibleMethodOverride'] = 'none',
+          },
+        },
+
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -680,9 +698,9 @@ require('lazy').setup({
         }
       end,
       formatters_by_ft = {
+        -- Formatters are run in sequence
         lua = { 'stylua' },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
+        python = { 'isort', 'black' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
