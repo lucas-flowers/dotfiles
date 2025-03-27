@@ -40,6 +40,9 @@ vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+vim.opt.textwidth = 79
+vim.opt.colorcolumn = '80'
+
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
 
