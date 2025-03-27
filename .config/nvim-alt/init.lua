@@ -1,3 +1,7 @@
+-- TODO Take care of new changes in 0.11, particularly:
+--  - Builtin autocomplete
+--  - Builtin LSP setup
+
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 
