@@ -75,6 +75,12 @@ vim.opt.confirm = true
 -- TODO Short lines from old vim?
 vim.opt.wrap = false
 
+vim.opt.formatoptions:append 'c' -- Autowrap comments with textwidth
+vim.opt.formatoptions:append 'r' -- Autowrap comments on [r]eturn
+vim.opt.formatoptions:append 'o' -- Autowrap comments on [O] or [o]
+
+-- TODO turn on autoread when inside git repos?
+
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
 --- Basic Keymaps                                                           ---
