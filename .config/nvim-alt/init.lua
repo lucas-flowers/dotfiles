@@ -601,7 +601,7 @@ require('lazy').setup({
         basedpyright = {
           ['python.analysis.diagnosticMode'] = 'workspace',
           ['python.linting.enabled'] = false,
-          ['python.analysis.typeCheckingMode'] = 'off',
+          ['python.analysis.typeCheckingMode'] = 'off', -- I'm using mypy right now
           ['python.analysis.logLevel'] = 'Error',
           -- ["python.formatting.provider"] = "black",
           -- ["python.formatting.blackArgs"] = ["--fast"],
@@ -863,6 +863,24 @@ require('lazy').setup({
         },
       }
       vim.cmd.colorscheme 'solarized'
+    end,
+  },
+
+  {
+    -- Linting
+    'mfussenegger/nvim-lint',
+    config = function()
+      local lint = require 'lint'
+
+      lint.linters_by_ft = {
+        python = { 'pylint', 'mypy' },
+      }
+
+      vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
+        callback = function()
+          lint.try_lint()
+        end,
+      })
     end,
   },
 
