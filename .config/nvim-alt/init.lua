@@ -714,6 +714,7 @@ require('lazy').setup({
         -- Formatters are run in sequence
         lua = { 'stylua' },
         python = { 'isort', 'black' },
+        go = { 'gofumpt', 'goimports' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
