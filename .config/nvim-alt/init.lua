@@ -153,12 +153,8 @@ vim.opt.rtp:prepend(lazypath)
 --
 -- preexisting plugins in old vim lua/config folder
 -- ctrlp
--- nerdtree
--- undotree
 -- vimtex
 -- various other language-specific plugins:
---    golang
---    python
 --    typescript
 
 --  To check the current status of your plugins, run
