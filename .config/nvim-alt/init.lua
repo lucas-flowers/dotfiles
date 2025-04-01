@@ -994,6 +994,18 @@ require('lazy').setup({
   },
 
   {
+    'jiaoshijie/undotree',
+    dependencies = 'nvim-lua/plenary.nvim',
+    config = true,
+    opts = {
+      position = 'right',
+    },
+    keys = { -- load the plugin only when using it's keybinding:
+      { '<leader>u', "<cmd>lua require('undotree').toggle()<cr>" },
+    },
+  },
+
+  {
     'folke/trouble.nvim',
     opts = {}, -- for default options, refer to the configuration section for custom setup.
     cmd = 'Trouble',
