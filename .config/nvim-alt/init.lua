@@ -869,24 +869,6 @@ require('lazy').setup({
     end,
   },
 
-  {
-    -- Linting
-    'mfussenegger/nvim-lint',
-    config = function()
-      local lint = require 'lint'
-
-      lint.linters_by_ft = {
-        python = { 'pylint', 'mypy' },
-      }
-
-      vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
-        callback = function()
-          lint.try_lint()
-        end,
-      })
-    end,
-  },
-
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
@@ -1024,7 +1006,7 @@ require('lazy').setup({
   --
   -- require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
-  -- require 'kickstart.plugins.lint',
+  require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
   -- require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
