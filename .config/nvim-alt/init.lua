@@ -152,7 +152,6 @@ vim.opt.rtp:prepend(lazypath)
 -- TODO Consider or drop:
 --
 -- preexisting plugins in old vim lua/config folder
--- ctrlp
 -- vimtex
 -- various other language-specific plugins:
 --    typescript
