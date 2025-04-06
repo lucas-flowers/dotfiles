@@ -1010,6 +1010,14 @@ require('lazy').setup({
     },
     lazy = false, -- neo-tree will lazily load itself
     config = function()
+      require('neo-tree').setup {
+        filesystem = {
+          use_libuv_file_watcher = true,
+          follow_current_file = {
+            enabled = true,
+          },
+        },
+      }
       vim.api.nvim_set_keymap('n', '<leader>n', ':Neotree position=right toggle<CR>', { noremap = true, silent = true })
     end,
   },
