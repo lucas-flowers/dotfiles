@@ -9,6 +9,7 @@ return {
         markdown = { 'markdownlint' },
         python = { 'pylint', 'mypy' },
         sh = { 'shellcheck' },
+        -- go = { 'golangcilint' }, # Can't get to work because it exits with code 7: https://github.com/mfussenegger/nvim-lint/issues/744
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,

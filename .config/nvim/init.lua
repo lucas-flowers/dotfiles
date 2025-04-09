@@ -579,6 +579,9 @@ require('lazy').setup({
           ['deepCompletion'] = true,
         },
 
+        -- Use this LSP rather than nvim-lint because it keeps failing in nvim-lint with exit code 7; see: https://github.com/mfussenegger/nvim-lint/issues/744
+        golangci_lint_ls = {},
+
         basedpyright = {
           ['python.analysis.diagnosticMode'] = 'workspace',
           ['python.linting.enabled'] = false,
