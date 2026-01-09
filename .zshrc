@@ -188,3 +188,10 @@ source ~/.bash_aliases
 if [ -f "$HOME/.local.zshrc" ]; then
     source "$HOME/.local.zshrc"
 fi
+
+# Make Claude Code shut up
+export CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY=1
+export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1
+export IS_DEMO=1 # reduces splash screen size
+export CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR=1 # claude gets confused when cd is aliased to zoxide; just stay in the same directory
+
