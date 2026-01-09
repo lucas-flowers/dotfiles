@@ -12,6 +12,7 @@ alias nvim-old='NVIM_APPNAME="nvim-old" nvim'
 
 # TODO Should I just use nvim directly?
 alias vim=nvim
+alias vimdiff='nvim -d'
 
 # Because I don't want to remember command flags for such a common operation
 if ! command -v pbcopy >/dev/null 2>&1; then
