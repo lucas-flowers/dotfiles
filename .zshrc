@@ -192,5 +192,5 @@ fi
 export CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY=1
 export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1
 export IS_DEMO=1 # reduces splash screen size
-export CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR=1 # claude gets confused when cd is aliased to zoxide; just stay in the same directory
+# export CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR=1 # enable if claude or I get confused by cd-ing too many times
 
