@@ -194,3 +194,6 @@ export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1
 export IS_DEMO=1 # reduces splash screen size
 # export CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR=1 # enable if claude or I get confused by cd-ing too many times
 
+# Use --help as fallback for commands without completions
+zstyle ':completion:*' completer _complete _gnu_generic
+
