@@ -9,6 +9,7 @@ return {
         markdown = { 'markdownlint' },
         python = { 'pylint', 'mypy' },
         sh = { 'shellcheck' },
+        -- php = { 'phpstan' },
         -- go = { 'golangcilint' }, # Can't get to work because it exits with code 7: https://github.com/mfussenegger/nvim-lint/issues/744
       }
 
