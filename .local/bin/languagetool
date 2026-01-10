@@ -1,2 +1,0 @@
-#!/bin/sh
-java -jar "$HOME/.local/lib/LanguageTool/languagetool-commandline.jar" -l en-US "$@"
