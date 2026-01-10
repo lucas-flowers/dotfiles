@@ -651,6 +651,7 @@ require('lazy').setup({
         'stylua', -- Used to format Lua code
         'markdownlint',
         'shellcheck',
+        'prettier',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -709,6 +710,7 @@ require('lazy').setup({
         python = { 'isort', 'black' },
         go = { 'gofumpt', 'goimports' },
         terraform = { 'terraform_fmt' },
+        json = { 'prettier' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
