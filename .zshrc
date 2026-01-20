@@ -178,6 +178,11 @@ if [[ -o interactive ]] && command -v zoxide >/dev/null 2>&1; then
     eval "$(zoxide init zsh --cmd cd)"
 fi
 
+# Alias fd to fdfind if fdfind exists (Ubuntu/Debian package name)
+if command -v fdfind >/dev/null 2>&1; then
+    alias fd='fdfind'
+fi
+
 # Aliases. These aliases will override any that oh-my-zsh libraries, plugins,
 # and themes provide. (Note that oh-my-zsh recommends putting aliases in
 # ZSH_CUSTOM. Maybe put zsh-specific aliases there?)
