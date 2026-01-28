@@ -3,7 +3,7 @@
 	"groups": {
 		"active_window_status": { "fg": "solarized:base01", "bg": "solarized:base2",  "attrs": [] },
 		"window_status":        { "fg": "solarized:base01", "bg": "solarized:base2",  "attrs": [] },
-		"activity_status":      { "fg": "solarized:violet", "bg": "solarized:base2",  "attrs": [] },
+		"activity_status":      { "fg": "solarized:green",  "bg": "solarized:base2",  "attrs": [] },
 		"bell_status":          { "fg": "solarized:red",    "bg": "solarized:base2",  "attrs": [] },
 		"window":               { "fg": "solarized:base01", "bg": "solarized:base2",  "attrs": [] },
 		"window:divider":       { "fg": "solarized:base1",  "bg": "solarized:base2",  "attrs": [] },
