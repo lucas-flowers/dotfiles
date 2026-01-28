@@ -1,0 +1,17 @@
+{
+	"segments": {
+		"right": [
+			{
+				"function": "powerline.segments.common.vcs.branch",
+				"priority": 40
+			},
+			{
+				"function": "powerline_k8s.k8s",
+				"priority": 30
+			},
+			{
+				"function": "powerline.segments.common.net.hostname"
+			}
+		]
+	}
+}
