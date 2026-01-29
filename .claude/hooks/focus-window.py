@@ -8,30 +8,44 @@ import subprocess
 import sys
 import time
 import shutil
-from typing import Optional, Tuple
+from typing import Optional, Tuple, Protocol
 import os
 
 # Tmux binary path
 TMUX = "tmux"
 
 
-def run_applescript(script: str) -> Tuple[bool, str]:
-    """Run an AppleScript and return success status and output."""
-    try:
-        result = subprocess.run(
-            ["osascript", "-e", script],
-            capture_output=True,
-            text=True,
-            check=False
-        )
-        return result.returncode == 0, result.stdout.strip()
-    except Exception as e:
-        return False, str(e)
+class WindowManager(Protocol):
+    """Protocol for platform-specific window management operations."""
+
+    def list_windows(self) -> str:
+        """List all non-background windows."""
+        ...
+
+    def focus_window(self, identifier: str) -> bool:
+        """Focus a window by application name or window title substring."""
+        ...
 
 
-def list_windows() -> str:
-    """List all non-background windows."""
-    script = '''
+class MacOSWindowManager:
+    """macOS-specific window management using AppleScript."""
+
+    def _run_applescript(self, script: str) -> Tuple[bool, str]:
+        """Run an AppleScript and return success status and output."""
+        try:
+            result = subprocess.run(
+                ["osascript", "-e", script],
+                capture_output=True,
+                text=True,
+                check=False
+            )
+            return result.returncode == 0, result.stdout.strip()
+        except Exception as e:
+            return False, str(e)
+
+    def list_windows(self) -> str:
+        """List all non-background windows."""
+        script = '''
 tell application "System Events"
     set output to ""
     repeat with proc in (every process whose background only is false)
@@ -48,8 +62,42 @@ tell application "System Events"
     return output
 end tell
 '''
-    success, output = run_applescript(script)
-    return output if success else ""
+        success, output = self._run_applescript(script)
+        return output if success else ""
+
+    def focus_window(self, identifier: str) -> bool:
+        """Focus a window by application name or window title substring."""
+        script = f'''
+tell application "System Events"
+    -- First try exact app name match
+    repeat with proc in (every process whose background only is false)
+        if name of proc is "{identifier}" then
+            set frontmost of proc to true
+            return "success"
+        end if
+    end repeat
+
+    -- Then try window title substring match
+    repeat with proc in (every process whose background only is false)
+        try
+            set matchingWindows to (every window of proc whose name contains "{identifier}")
+            if (count of matchingWindows) > 0 then
+                set frontmost of proc to true
+                tell first item of matchingWindows
+                    perform action "AXRaise"
+                end tell
+                return "success"
+            end if
+        on error
+            -- Continue to next process
+        end try
+    end repeat
+
+    return "not_found"
+end tell
+'''
+        success, output = self._run_applescript(script)
+        return success and output == "success"
 
 
 def interactive_select(windows: str) -> Optional[str]:
@@ -89,41 +137,6 @@ def interactive_select(windows: str) -> Optional[str]:
         pass
 
     return None
-
-
-def focus_window(identifier: str) -> bool:
-    """Focus a window by application name or window title substring."""
-    script = f'''
-tell application "System Events"
-    -- First try exact app name match
-    repeat with proc in (every process whose background only is false)
-        if name of proc is "{identifier}" then
-            set frontmost of proc to true
-            return "success"
-        end if
-    end repeat
-
-    -- Then try window title substring match
-    repeat with proc in (every process whose background only is false)
-        try
-            set matchingWindows to (every window of proc whose name contains "{identifier}")
-            if (count of matchingWindows) > 0 then
-                set frontmost of proc to true
-                tell first item of matchingWindows
-                    perform action "AXRaise"
-                end tell
-                return "success"
-            end if
-        on error
-            -- Continue to next process
-        end try
-    end repeat
-
-    return "not_found"
-end tell
-'''
-    success, output = run_applescript(script)
-    return success and output == "success"
 
 
 def switch_tmux(session: str, window: Optional[str] = None, pane: Optional[str] = None) -> None:
@@ -248,17 +261,20 @@ notes:
     if args.tmux_bin:
         TMUX = args.tmux_bin
 
+    # Initialize window manager
+    wm = MacOSWindowManager()
+
     # Handle list mode
     if args.list:
         print("Available windows:\n")
-        windows = list_windows()
+        windows = wm.list_windows()
         print(windows if windows else "No windows found")
         sys.exit(0)
 
     # Handle interactive mode
     window_id = args.window
     if args.interactive:
-        windows = list_windows()
+        windows = wm.list_windows()
         selected = interactive_select(windows)
         if not selected:
             print("No window selected")
@@ -273,7 +289,7 @@ notes:
 
     # Focus the window
     print(f"Focusing: {window_id}")
-    if not focus_window(window_id):
+    if not wm.focus_window(window_id):
         print(f"Error: Could not find or focus window '{window_id}'")
         print("Try using --list to see available windows")
         sys.exit(1)
