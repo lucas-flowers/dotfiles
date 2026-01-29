@@ -2,7 +2,7 @@
   "theme": "light",
   "display": {
     "padding": 1,
-    "style": "powerline",
+    "style": "capsule",
     "charset": "unicode",
     "colorCompatibility": "auto",
     "autoWrap": false,
