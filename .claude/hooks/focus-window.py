@@ -9,6 +9,9 @@ import sys
 import time
 import shutil
 from typing import Optional, Tuple, Protocol
+from pathlib import Path
+import tempfile
+from contextlib import contextmanager
 import os
 
 # Tmux binary path
@@ -98,6 +101,115 @@ end tell
 '''
         success, output = self._run_applescript(script)
         return success and output == "success"
+
+
+class LinuxWindowManager:
+    """Linux-specific window management using KWin D-Bus API."""
+
+    KWIN_SERVICE = "org.kde.KWin"
+
+    def __init__(self, qdbus_bin: str = "qdbus6"):
+        """Initialize with path to qdbus binary."""
+        self.qdbus_bin = qdbus_bin
+
+    @contextmanager
+    def _kwin_script(self, script_content: str):
+        """Create temporary KWin JavaScript file."""
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.js', delete=False) as f:
+            f.write(script_content)
+            path = Path(f.name)
+
+        try:
+            yield str(path)
+        finally:
+            path.unlink(missing_ok=True)
+
+    def _run_kwin_script(self, script_content: str) -> str:
+        """Execute a KWin script and return output."""
+        with self._kwin_script(script_content) as script_path:
+            # Load script
+            result = subprocess.run(
+                [self.qdbus_bin, self.KWIN_SERVICE, '/Scripting',
+                 'org.kde.kwin.Scripting.loadScript', script_path, 'TempScript'],
+                capture_output=True, text=True, check=True
+            )
+            script_id = result.stdout.strip()
+
+            try:
+                # Run script
+                run_result = subprocess.run(
+                    [self.qdbus_bin, self.KWIN_SERVICE, f'/Scripting/Script{script_id}',
+                     'org.kde.kwin.Script.run'],
+                    capture_output=True, text=True, check=True
+                )
+                return run_result.stdout.strip()
+            finally:
+                # Always attempt to stop script, but don't fail if it's already stopped
+                subprocess.run(
+                    [self.qdbus_bin, self.KWIN_SERVICE, f'/Scripting/Script{script_id}',
+                     'org.kde.kwin.Script.stop'],
+                    capture_output=True, check=False
+                )
+
+    def list_windows(self) -> str:
+        """List all windows via KWin scripting."""
+        script = """
+const clients = workspace.windowList();
+let output = "";
+for (let i = 0; i < clients.length; i++) {
+    const client = clients[i];
+    const resourceClass = client.resourceClass.toString();
+    const caption = client.caption.toString();
+    if (caption) {
+        output += resourceClass + " :: " + caption + "\\n";
+    }
+}
+console.log(output);
+"""
+        return self._run_kwin_script(script)
+
+    def focus_window(self, identifier: str) -> bool:
+        """Focus a window by resource class or caption substring."""
+        safe_identifier = identifier.replace("'", "\\'").lower()
+
+        script = f"""
+const clients = workspace.windowList();
+let found = false;
+
+// First try exact resource class match
+for (let i = 0; i < clients.length; i++) {{
+    const client = clients[i];
+    if (client.resourceClass.toString().toLowerCase() === '{safe_identifier}') {{
+        workspace.raiseWindow(client);
+        workspace.activeWindow = client;
+        console.log("focus-window.py: Activated by class: " + client.caption);
+        found = true;
+        break;
+    }}
+}}
+
+// Then try caption substring match
+if (!found) {{
+    for (let i = 0; i < clients.length; i++) {{
+        const client = clients[i];
+        if (client.caption.toString().toLowerCase().includes('{safe_identifier}')) {{
+            workspace.raiseWindow(client);
+            workspace.activeWindow = client;
+            console.log("focus-window.py: Activated by caption: " + client.caption);
+            found = true;
+            break;
+        }}
+    }}
+}}
+
+if (!found) {{
+    console.log("focus-window.py: Window not found: {safe_identifier}");
+}}
+"""
+        self._run_kwin_script(script)
+        # Always return True since we can't capture script output
+        # Check journalctl for actual success/failure logs
+        return True
 
 
 def interactive_select(windows: str) -> Optional[str]:
@@ -261,8 +373,13 @@ notes:
     if args.tmux_bin:
         TMUX = args.tmux_bin
 
-    # Initialize window manager
-    wm = MacOSWindowManager()
+    # Initialize window manager based on platform
+    if sys.platform == "darwin":
+        wm = MacOSWindowManager()
+    elif sys.platform == "linux":
+        wm = LinuxWindowManager()
+    else:
+        raise RuntimeError(f"Unsupported platform: {sys.platform}. Only macOS (darwin) and Linux are supported.")
 
     # Handle list mode
     if args.list:
