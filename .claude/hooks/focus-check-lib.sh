@@ -39,9 +39,6 @@ check_macos_focus() {
         "Apple_Terminal") expected_app="Terminal" ;;
         "iTerm.app")      expected_app="iTerm2" ;;
         "iTerm2")         expected_app="iTerm2" ;;
-        "WarpTerminal")   expected_app="Warp" ;;
-        "vscode")         expected_app="Code" ;;
-        "cursor")         expected_app="Cursor" ;;
         *)                expected_app="$terminal_app" ;;
     esac
 

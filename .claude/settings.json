@@ -1,10 +1,4 @@
 {
-  "statusLine": {
-    "type": "command",
-    "command": "npx -y @owloops/claude-powerline",
-    "padding": 0
-  },
-  "alwaysThinkingEnabled": true,
   "hooks": {
     "Stop": [
       {
@@ -26,5 +20,11 @@
         ]
       }
     ]
-  }
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "npx -y @owloops/claude-powerline",
+    "padding": 0
+  },
+  "alwaysThinkingEnabled": true
 }

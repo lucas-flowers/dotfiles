@@ -104,9 +104,9 @@ get_permission_message() {
     fi
 }
 
-# Send notification (no click handler - just visual alert)
+# Send notification with click handler to focus terminal and tmux pane
 send_notification() {
-    local message title
+    local message title terminal_app focus_cmd
 
     if [[ "$HOOK_EVENT" == "PermissionRequest" ]]; then
         title="Claude needs approval"
@@ -116,7 +116,29 @@ send_notification() {
         message=$(get_last_message)
     fi
 
-    terminal-notifier -title "$title" -message "$message" 2>/dev/null || true
+    # Get terminal app for focus-window.py
+    terminal_app="${SAVED_TERM_PROGRAM:-Terminal}"
+    case "$terminal_app" in
+        "Apple_Terminal") terminal_app="Terminal" ;;
+        "iTerm.app"|"iTerm2") terminal_app="iTerm2" ;;
+        *) terminal_app="Terminal" ;;
+    esac
+
+    # Build focus command with tmux context
+    local tmux_bin
+    tmux_bin=$(which tmux)
+    focus_cmd="$SCRIPT_DIR/focus-window.py --tmux-bin '$tmux_bin' -w '$terminal_app'"
+    if [[ -n "${SAVED_TMUX_SESSION:-}" ]]; then
+        focus_cmd="$focus_cmd -s '$SAVED_TMUX_SESSION'"
+        if [[ -n "${SAVED_TMUX_WINDOW:-}" ]]; then
+            focus_cmd="$focus_cmd -n '$SAVED_TMUX_WINDOW'"
+        fi
+        if [[ -n "${SAVED_TMUX_PANE:-}" ]]; then
+            focus_cmd="$focus_cmd -p '$SAVED_TMUX_PANE'"
+        fi
+    fi
+
+    terminal-notifier -title "$title" -message "$message" -execute "$focus_cmd" 2>/dev/null || true
 }
 
 # Main logic
