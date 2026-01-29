@@ -16,11 +16,6 @@
           "model": {
             "enabled": true
           },
-          "session": {
-            "enabled": true,
-            "type": "cost",
-            "costSource": "official"
-          },
           "today": {
             "enabled": true,
             "type": "cost"
