@@ -1,0 +1,67 @@
+{
+  "version": 3,
+  "lines": [
+    [
+      {
+        "id": "86a90b88-3b40-4c67-9c07-e9763488e2b6",
+        "type": "current-working-dir",
+        "color": "hex:073642",
+        "backgroundColor": "hex:d0d0d0",
+        "rawValue": true
+      },
+      {
+        "id": "1",
+        "type": "model",
+        "color": "hex:000000",
+        "backgroundColor": "hex:87ceeb",
+        "rawValue": true
+      },
+      {
+        "id": "3",
+        "type": "custom-command",
+        "color": "hex:ffffff",
+        "backgroundColor": "hex:10b981",
+        "commandPath": "npx -y ccusage@latest statusline --visual-burn-rate off 2>/dev/null | grep -oE '\\$[0-9.]+ today' | sed 's/ today//'",
+        "timeout": 30000
+      },
+      {
+        "id": "5",
+        "type": "block-timer",
+        "color": "hex:ffffff",
+        "backgroundColor": "hex:6366f1",
+        "rawValue": true
+      },
+      {
+        "id": "7",
+        "type": "context-percentage-usable",
+        "color": "hex:ffffff",
+        "backgroundColor": "hex:718096",
+        "rawValue": true
+      }
+    ],
+    [],
+    []
+  ],
+  "flexMode": "full-minus-40",
+  "compactThreshold": 60,
+  "colorLevel": 3,
+  "defaultPadding": " ",
+  "inheritSeparatorColors": false,
+  "globalBold": false,
+  "powerline": {
+    "enabled": true,
+    "separators": [
+      ""
+    ],
+    "separatorInvertBackground": [
+      false
+    ],
+    "startCaps": [
+      ""
+    ],
+    "endCaps": [
+      ""
+    ],
+    "autoAlign": false
+  }
+}
