@@ -11,9 +11,24 @@ get_terminal_app() {
         term="${LC_TERMINAL:-}"
     fi
 
-    # Fallback: check __CFBundleIdentifier for iTerm
-    if [[ -z "$term" && "${__CFBundleIdentifier:-}" == "com.googlecode.iterm2" ]]; then
-        term="iTerm2"
+    # Fallback: check __CFBundleIdentifier for iTerm, or use OS defaults
+    if [[ -z "$term" ]]; then
+        if [[ "${__CFBundleIdentifier:-}" == "com.googlecode.iterm2" ]]; then
+            term="iTerm2"
+        else
+            case "$(uname)" in
+                Darwin)
+                    term="iTerm2"
+                    ;;
+                Linux)
+                    term="konsole"
+                    ;;
+                *)
+                    echo "Error: Unsupported OS $(uname)" >&2
+                    return 1
+                    ;;
+            esac
+        fi
     fi
 
     echo "$term"
@@ -39,6 +54,25 @@ check_macos_focus() {
         "Apple_Terminal") expected_app="Terminal" ;;
         "iTerm.app")      expected_app="iTerm2" ;;
         "iTerm2")         expected_app="iTerm2" ;;
+        *)                expected_app="$terminal_app" ;;
+    esac
+
+    [[ "$frontmost" == "$expected_app" ]]
+}
+
+# Check if the Linux frontmost window is our terminal
+check_linux_focus() {
+    local terminal_app
+    terminal_app=$(get_terminal_app "${1:-}")
+
+    # Get frontmost application window class
+    local frontmost
+    frontmost=$(kdotool getwindowclassname $(kdotool getactivewindow) 2>/dev/null)
+
+    # Normalize terminal name to window class
+    local expected_app
+    case "$terminal_app" in
+        "konsole")        expected_app="org.kde.konsole" ;;
         *)                expected_app="$terminal_app" ;;
     esac
 
@@ -79,6 +113,18 @@ is_user_focused() {
     local tmux_pane="${SAVED_TMUX_PANE:-}"
 
     # Both checks must pass
-    check_macos_focus "$term_program" && \
-    check_tmux_focus "$tmux_session" "$tmux_window" "$tmux_pane"
+    case "$(uname)" in
+        Darwin)
+            check_macos_focus "$term_program" && \
+            check_tmux_focus "$tmux_session" "$tmux_window" "$tmux_pane"
+            ;;
+        Linux)
+            check_linux_focus "$term_program" && \
+            check_tmux_focus "$tmux_session" "$tmux_window" "$tmux_pane"
+            ;;
+        *)
+            # Unsupported OS - assume not focused
+            return 1
+            ;;
+    esac
 }

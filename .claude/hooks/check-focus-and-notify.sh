@@ -4,9 +4,6 @@
 
 set -uo pipefail
 
-# Only run on macOS (uses osascript and terminal-notifier)
-[[ "$(uname)" != "Darwin" ]] && exit 0
-
 # Read hook input from stdin
 HOOK_INPUT=$(cat)
 TRANSCRIPT_PATH=$(echo "$HOOK_INPUT" | jq -r '.transcript_path // empty')
@@ -116,29 +113,82 @@ send_notification() {
         message=$(get_last_message)
     fi
 
-    # Get terminal app for focus-window.py
-    terminal_app="${SAVED_TERM_PROGRAM:-Terminal}"
-    case "$terminal_app" in
-        "Apple_Terminal") terminal_app="Terminal" ;;
-        "iTerm.app"|"iTerm2") terminal_app="iTerm2" ;;
-        *) terminal_app="Terminal" ;;
+    # OS-specific notification handling
+    case "$(uname)" in
+        Darwin)
+            # Get terminal app for focus-window.py
+            terminal_app="${SAVED_TERM_PROGRAM:-Terminal}"
+            case "$terminal_app" in
+                "Apple_Terminal") terminal_app="Terminal" ;;
+                "iTerm.app"|"iTerm2") terminal_app="iTerm2" ;;
+                *) terminal_app="Terminal" ;;
+            esac
+
+            # Build focus command with tmux context
+            local tmux_bin
+            tmux_bin=$(which tmux)
+            focus_cmd="$SCRIPT_DIR/focus-window.py --tmux-bin '$tmux_bin' -w '$terminal_app'"
+            if [[ -n "${SAVED_TMUX_SESSION:-}" ]]; then
+                focus_cmd="$focus_cmd -s '$SAVED_TMUX_SESSION'"
+                if [[ -n "${SAVED_TMUX_WINDOW:-}" ]]; then
+                    focus_cmd="$focus_cmd -n '$SAVED_TMUX_WINDOW'"
+                fi
+                if [[ -n "${SAVED_TMUX_PANE:-}" ]]; then
+                    focus_cmd="$focus_cmd -p '$SAVED_TMUX_PANE'"
+                fi
+            fi
+
+            terminal-notifier -title "$title" -message "$message" -execute "$focus_cmd" 2>/dev/null || true
+            ;;
+        Linux)
+            # Get terminal app
+            terminal_app="${SAVED_TERM_PROGRAM:-konsole}"
+
+            # Build focus command with tmux context
+            local tmux_bin
+            tmux_bin=$(which tmux)
+            focus_cmd="$SCRIPT_DIR/focus-window.py --tmux-bin '$tmux_bin' -w '$terminal_app'"
+            if [[ -n "${SAVED_TMUX_SESSION:-}" ]]; then
+                focus_cmd="$focus_cmd -s '$SAVED_TMUX_SESSION'"
+                if [[ -n "${SAVED_TMUX_WINDOW:-}" ]]; then
+                    focus_cmd="$focus_cmd -n '$SAVED_TMUX_WINDOW'"
+                fi
+                if [[ -n "${SAVED_TMUX_PANE:-}" ]]; then
+                    focus_cmd="$focus_cmd -p '$SAVED_TMUX_PANE'"
+                fi
+            fi
+
+            # Send notification with action using Python GObject. Use the
+            # system python (i.e., avoid pyenv shims or venv python) and make
+            # sure the pipes close appropriately.
+            /usr/bin/python3 - "$title" "$message" "$focus_cmd" <<'PYEOF' >/dev/null 2>&1 &
+import sys
+import gi
+gi.require_version('Notify', '0.7')
+from gi.repository import Notify, GLib
+import subprocess
+
+title = sys.argv[1]
+message = sys.argv[2]
+focus_cmd = sys.argv[3]
+
+def on_action(notification, action, user_data):
+    focus_cmd, loop = user_data
+    if action == 'focus':
+        subprocess.run(focus_cmd, shell=True)
+    loop.quit()
+
+Notify.init('Claude Code')
+n = Notify.Notification.new(title, message, None)
+loop = GLib.MainLoop()
+n.add_action('focus', 'Focus Window', on_action, (focus_cmd, loop))
+n.show()
+GLib.timeout_add_seconds(60, lambda: loop.quit() or False)
+loop.run()
+Notify.uninit()
+PYEOF
+            ;;
     esac
-
-    # Build focus command with tmux context
-    local tmux_bin
-    tmux_bin=$(which tmux)
-    focus_cmd="$SCRIPT_DIR/focus-window.py --tmux-bin '$tmux_bin' -w '$terminal_app'"
-    if [[ -n "${SAVED_TMUX_SESSION:-}" ]]; then
-        focus_cmd="$focus_cmd -s '$SAVED_TMUX_SESSION'"
-        if [[ -n "${SAVED_TMUX_WINDOW:-}" ]]; then
-            focus_cmd="$focus_cmd -n '$SAVED_TMUX_WINDOW'"
-        fi
-        if [[ -n "${SAVED_TMUX_PANE:-}" ]]; then
-            focus_cmd="$focus_cmd -p '$SAVED_TMUX_PANE'"
-        fi
-    fi
-
-    terminal-notifier -title "$title" -message "$message" -execute "$focus_cmd" 2>/dev/null || true
 }
 
 # Main logic
