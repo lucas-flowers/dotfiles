@@ -29,7 +29,10 @@
         "type": "block-timer",
         "color": "hex:ffffff",
         "backgroundColor": "hex:6366f1",
-        "rawValue": true
+        "rawValue": true,
+        "metadata": {
+          "display": "progress-short"
+        }
       },
       {
         "id": "7",
