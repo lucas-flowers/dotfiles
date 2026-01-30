@@ -39,7 +39,10 @@
         "type": "context-percentage-usable",
         "color": "hex:ffffff",
         "backgroundColor": "hex:718096",
-        "rawValue": true
+        "rawValue": true,
+        "metadata": {
+          "inverse": "false"
+        }
       }
     ],
     [],
