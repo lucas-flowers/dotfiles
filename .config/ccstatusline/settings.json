@@ -20,22 +20,11 @@
         "rawValue": true
       },
       {
-        "id": "3",
-        "type": "custom-command",
-        "color": "hex:ffffff",
-        "backgroundColor": "hex:10b981",
-        "commandPath": "npx -y ccusage@latest statusline --visual-burn-rate off 2>/dev/null | grep -oE '\\$[0-9.]+ today' | sed 's/ today//'",
-        "timeout": 30000
-      },
-      {
         "id": "5",
         "type": "block-timer",
         "color": "hex:ffffff",
         "backgroundColor": "hex:6366f1",
-        "rawValue": true,
-        "metadata": {
-          "display": "progress-short"
-        }
+        "rawValue": true
       },
       {
         "id": "7",
