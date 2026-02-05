@@ -6,7 +6,6 @@ Focus a macOS window and optionally switch to a specific tmux session/window/pan
 import argparse
 import subprocess
 import sys
-import time
 import shutil
 from typing import Optional, Tuple, Protocol
 from pathlib import Path
@@ -69,38 +68,11 @@ end tell
         return output if success else ""
 
     def focus_window(self, identifier: str) -> bool:
-        """Focus a window by application name or window title substring."""
-        script = f'''
-tell application "System Events"
-    -- First try exact app name match
-    repeat with proc in (every process whose background only is false)
-        if name of proc is "{identifier}" then
-            set frontmost of proc to true
-            return "success"
-        end if
-    end repeat
-
-    -- Then try window title substring match
-    repeat with proc in (every process whose background only is false)
-        try
-            set matchingWindows to (every window of proc whose name contains "{identifier}")
-            if (count of matchingWindows) > 0 then
-                set frontmost of proc to true
-                tell first item of matchingWindows
-                    perform action "AXRaise"
-                end tell
-                return "success"
-            end if
-        on error
-            -- Continue to next process
-        end try
-    end repeat
-
-    return "not_found"
-end tell
-'''
-        success, output = self._run_applescript(script)
-        return success and output == "success"
+        """Focus a window by application name."""
+        # Direct activation - no looping through processes
+        script = f'tell application "{identifier}" to activate'
+        success, _ = self._run_applescript(script)
+        return success
 
 
 class LinuxWindowManager:
